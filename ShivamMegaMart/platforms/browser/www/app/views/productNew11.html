@@ -1,0 +1,352 @@
+﻿ <style>
+     
+figure {
+    margin: 0px -12px 1rem !important;
+}
+.isNotActive{
+    color:#ccc;
+}
+ </style>
+<link rel="stylesheet" href="/NewContent/css/reset.css"> <!-- CSS reset -->
+<link rel="stylesheet" href="/NewContent/css/style.css"> <!-- Resource style -->
+ <header class="cd-header">
+    <h1>Content Filters</h1>
+</header>
+
+<main class="cd-main-content">
+    <div class="cd-tab-filter-wrapper">
+        <div class="cd-tab-filter">
+            <ul class="cd-filters">
+                <li class="placeholder">
+                    <a data-type="all" href="#0">All</a> <!-- selected option on mobile -->
+                </li>
+                <li class="filter"><a class="selected" href="#0" data-type="all">All</a></li>
+                <li class="filter" data-filter=".color-1"><a href="#0" data-type="color-1">Color 1</a></li>
+                <li class="filter" data-filter=".color-2"><a href="#0" data-type="color-2">Color 2</a></li>
+            </ul> <!-- cd-filters -->
+        </div> <!-- cd-tab-filter -->
+    </div> <!-- cd-tab-filter-wrapper -->
+
+    <section class="cd-gallery">
+        <ul>
+            <li class="mix color-1 check1 radio2 option3"><img src="img/img-1.jpg" alt="Image 1"></li>
+            <li class="mix color-2 check2 radio2 option2"><img src="img/img-2.jpg" alt="Image 2"></li>
+            <li class="mix color-1 check3 radio3 option1"><img src="img/img-3.jpg" alt="Image 3"></li>
+            <li class="mix color-1 check3 radio2 option4"><img src="img/img-4.jpg" alt="Image 4"></li>
+            <li class="mix color-1 check1 radio3 option2"><img src="img/img-5.jpg" alt="Image 5"></li>
+            <li class="mix color-2 check2 radio3 option3"><img src="img/img-6.jpg" alt="Image 6"></li>
+            <li class="mix color-2 check2 radio2 option1"><img src="img/img-7.jpg" alt="Image 7"></li>
+            <li class="mix color-1 check1 radio3 option4"><img src="img/img-8.jpg" alt="Image 8"></li>
+            <li class="mix color-2 check1 radio2 option3"><img src="img/img-9.jpg" alt="Image 9"></li>
+            <li class="mix color-1 check3 radio2 option4"><img src="img/img-10.jpg" alt="Image 10"></li>
+            <li class="mix color-1 check3 radio3 option2"><img src="img/img-11.jpg" alt="Image 11"></li>
+            <li class="mix color-2 check1 radio3 option1"><img src="img/img-12.jpg" alt="Image 12"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+            <li class="gap"></li>
+        </ul>
+        <div class="cd-fail-message">No results found</div>
+    </section> <!-- cd-gallery -->
+
+    <div class="cd-filter">
+        <form>
+            <div class="cd-filter-block">
+                <h4>Search</h4>
+
+                <div class="cd-filter-content">
+                    <input type="search" placeholder="Try color-1...">
+                </div> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+
+            <div class="cd-filter-block">
+                <h4>Check boxes</h4>
+
+                <ul class="cd-filter-content cd-filters list">
+                    <li>
+                        <input class="filter" data-filter=".check1" type="checkbox" id="checkbox1">
+                        <label class="checkbox-label" for="checkbox1">Option 1</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter=".check2" type="checkbox" id="checkbox2">
+                        <label class="checkbox-label" for="checkbox2">Option 2</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter=".check3" type="checkbox" id="checkbox3">
+                        <label class="checkbox-label" for="checkbox3">Option 3</label>
+                    </li>
+                </ul> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+
+            <div class="cd-filter-block">
+                <h4>Select</h4>
+
+                <div class="cd-filter-content">
+                    <div class="cd-select cd-filters">
+                        <select class="filter" name="selectThis" id="selectThis">
+                            <option value="">Choose an option</option>
+                            <option value=".option1">Option 1</option>
+                            <option value=".option2">Option 2</option>
+                            <option value=".option3">Option 3</option>
+                            <option value=".option4">Option 4</option>
+                        </select>
+                    </div> <!-- cd-select -->
+                </div> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+
+            <div class="cd-filter-block">
+                <h4>Radio buttons</h4>
+
+                <ul class="cd-filter-content cd-filters list">
+                    <li>
+                        <input class="filter" data-filter="" type="radio" name="radioButton" id="radio1" checked>
+                        <label class="radio-label" for="radio1">All</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter=".radio2" type="radio" name="radioButton" id="radio2">
+                        <label class="radio-label" for="radio2">Choice 2</label>
+                    </li>
+
+                    <li>
+                        <input class="filter" data-filter=".radio3" type="radio" name="radioButton" id="radio3">
+                        <label class="radio-label" for="radio3">Choice 3</label>
+                    </li>
+                </ul> <!-- cd-filter-content -->
+            </div> <!-- cd-filter-block -->
+        </form>
+
+        <a href="#0" class="cd-close">Close</a>
+    </div> <!-- cd-filter -->
+
+    <a href="#0" class="cd-filter-trigger">Filters</a>
+</main> <!-- cd-main-content -->
+<section class="section-content bg padding-y" style="display:none;">
+    <div class="container">
+
+        <div class="row">
+            <aside class="col-sm-3">
+
+                <div class="card card-filter">
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <a class="" aria-expanded="true" data-toggle="collapse" data-target="#collapse22">
+                                <i class="icon-action fa fa-chevron-down"></i>
+                                <h6 class="title">By Category</h6>
+                            </a>
+                        </header>
+                        <div style="" class="filter-content collapse show" id="collapse22">
+                            <div class="card-body">
+                                <form class="pb-3">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Search" type="text">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <ul class="list-unstyled list-lg">
+                                    <li ng-repeat="parentCategory in categories" ng-if="parentCategory.categories1.length==0">
+
+                                        <label class="form-check" >
+                                            <input class="form-check-input" ng-click="AddCatArray(parentCategory.id)" ng-checked="categoriesarraySelect.indexOf(parentCategory.id) > -1" name="name{{parentCategory.categoryName }}" id="name{{parentCategory.id}}" value="" type="checkbox">
+                                            <span class="form-check-label">
+                                                <span class="float-right badge badge-light round">5</span>
+                                                {{parentCategory.categoryName }}
+                                            </span>
+                                        </label>  <!-- form-check.// -->
+
+                                     
+
+                                    </li> 
+                                </ul>
+                            </div> <!-- card-body.// -->
+                        </div> <!-- collapse .// -->
+                    </article> <!-- card-group-item.// -->
+                    <article class="card-group-item">
+                        <header class="card-header">
+                            <a  data-toggle="collapse" data-target="#collapse33">
+                                <i class="icon-action fa fa-chevron-down"></i>
+                                <h6 class="title">By Price  </h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse33">
+                            <div class="card-body">
+                                <input type="range" class="custom-range" min="0" max="100" name="">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Min</label>
+                                        <input class="form-control" placeholder="$0" type="number">
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Max</label>
+                                        <input class="form-control" placeholder="$1,0000" type="number">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button class="btn btn-block btn-outline-primary">Apply</button>
+                            </div> <!-- card-body.// -->
+                        </div> <!-- collapse .// -->
+                    </article> <!-- card-group-item.// -->
+                    <article class="card-group-item" ng-repeat="Attribute in Attributes|limitTo:4" ng-init="outerIndex = $index">
+                        <header class="card-header">
+                            <a  data-toggle="collapse" data-target="#collapse44">
+                                <i class="icon-action fa fa-chevron-down"></i>
+                                <h6 class="title">{{Attribute.attributeName}} </h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse44">
+                            <div class="card-body">
+                                <form>
+                                    <label class="form-check" ng-repeat="attrValue in AttributesValue | unique:'attributeValue'"  ng-if="Attribute.id==attrValue.attributeId">
+                                        
+                                            <input class="form-check-input" id="attr_{{attrValue.attributeValue}}" name="attr_{{attrValue.attributeValue}}" ng-click="IsFilterChecked(Attribute.attributeName,attrValue.attributeValue)" ng-checked="attrarraySelect.indexOf(attrValue.attributeValue) > -1" value="" type="checkbox">
+                                            <span class="form-check-label">
+                                                <span class="float-right badge badge-light round">5</span>
+                                                {{attrValue.attributeValue}}
+                                            </span>
+                                        </label>  <!-- form-check.// -->
+
+                                </form>
+                            </div> <!-- card-body.// -->
+                        </div> <!-- collapse .// -->
+                    </article> <!-- card-group-item.// -->
+                </div> <!-- card.// -->
+
+
+            </aside> <!-- col.// -->
+            <main class="col-sm-9">
+                <div class="card row">
+                    <header class="card-header" style="border-bottom:0px;">
+                       
+                        <h6 class="title">Products 
+                        
+                            
+                        <span class="visible-items pull-right">
+                            
+                            <a ng-click="Clearfilter()"><i class="fa fa-times" style="color:red;"></i></a> &nbsp;
+                            <a ng-click="LoadInMode('L')"><i  ng-class="currentMode==false ? 'fa fa-list isNotActive' : 'fa fa-list'"></i></a> &nbsp;
+                            <a ng-click="LoadInMode('G')"><i  ng-class="currentMode==true ? 'fa fa-th isNotActive' : 'fa fa-th'"></i></a>&nbsp;
+                            
+                            Showing <strong>{{pagedItems.length}} </strong>of <strong>{{total}} </strong>results</span></h6>
+                        <!--<button type="button" ng-click="Clearfilter()" class="btn btn-template"><i class="fa fa-filter"></i>Clear filter</button>-->
+                        
+                    </header>
+                </div>
+            <br />
+                <div ng-show="IsLoadingData==true" class="card">
+                  
+
+                        <div style="text-align:center;">
+                            <img src="../img/ajax_loading.gif" width="100" />
+                        </div>
+
+                    
+                </div>
+
+                <div class="row" ng-show="currentMode==false">
+                    <div class="col-md-4" ng-repeat="x in pagedItems">
+                        <figure class="card card-product">
+                            <div class="img-wrap">
+                                <img src="{{GetProductImage(x[13])}}">
+                                <a class="btn-overlay" ng-click="SetProduct(x)"><i class="fa fa-search-plus"></i> Quick view</a>
+                            </div>
+                            <figcaption class="info-wrap">
+                                <h4 class="title"><span ng-bind="x[9] | limitTo:20"></span><span ng-show="x[9].length>20">...</span></h4>
+
+                                <p class="desc"><span ng-bind="x[10] | limitTo:50"></span><span ng-show="x[10].length>50">...</span>  </p>
+                                <div class="rating-wrap">
+                                    <div class="price-wrap h5">
+                                        <span class="price-new">{{x[5]|currency:"₹ "}}</span> <del class="price-old">$1980</del>
+                                    </div> <!-- price-wrap.// -->
+
+                                </div> <!-- rating-wrap.// -->
+                            </figcaption>
+                            <div class="bottom-wrap">
+                                <!--<a href="" class="btn btn-sm btn-primary float-right">Order Now</a>-->
+                                <a ng-click="AddToCartGlobal(x[4],x,'products-')" class="btn active btn-round btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+
+                            </div> <!-- bottom-wrap.// -->
+                        </figure>
+                    </div> <!-- col // -->
+                    <!-- col // -->
+                    <!-- col // -->
+                </div> <!-- row.// -->
+
+                <article class="card card-product row" ng-repeat="x in pagedItems" style="margin-bottom:10px;" ng-show="currentMode==true">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <aside class="col-sm-3">
+                                <div class="img-wrap"><img src="{{GetProductImage(x[13])}}" alt="product" class="img-fluid"></div>
+                            </aside> <!-- col.// -->
+                            <article class="col-sm-6">
+
+                                <h4 class="title"> {{x[9]}} </h4>
+                                <div class="rating-wrap  mb-2">
+                                    <ul class="rating-stars">
+                                        <li style="width:80%" class="stars-active">
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="label-rating">132 reviews</div>
+                                    <div class="label-rating">154 orders </div>
+                                </div>
+                                <p><span ng-bind="x[10] | limitTo:100"></span><span ng-show="x[10].length>150">...</span>  </p>
+                                <dl class="dlist-align" ng-repeat="y in AllProductsColumns|limitTo:3">
+                                    <dt>{{y.ColName}}</dt>
+                                    <dd><span> {{x[y.colIndex]}} </span> </dd>
+                                </dl>
+
+                            </article> <!-- col.// -->
+                            <aside class="col-sm-3 border-left">
+                                <div class="action-wrap">
+                                    <div class="price-wrap h4">
+                                        <span class="price"> {{x[5]|currency:"₹ "}}</span>
+                                        <!--  <del class="price-old"> $98</del>-->
+                                    </div> <!-- info-price-detail // -->
+                                    <p class="text-success">Free shipping</p>
+                                    <br>
+                                    <p>
+                                        <a ng-click="AddToCartGlobal(x[4],x,'products-')" class="btn btn-sm btn-round btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                        <a ng-click="SetProduct(x)" class="btn btn-secondary  btn-sm btn-round"> <i class="fa fa-info"></i> Details  </a>
+                                    </p>
+                                    <a href="#"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                </div> <!-- action-wrap.// -->
+                            </aside> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </div> <!-- card-body .// -->
+                </article>
+                <div ng-show="loadmore==true" class="card">
+                    <div class="container">
+
+                        <div style="text-align:center;">
+                            <img src="../img/ajax_loading.gif" width="100" />
+                        </div>
+
+                    </div>
+                </div>
+              
+                <a ng-click="LoadMoreProducts()" ng-disabled="loadmore==true" class="align-items-center btn btn-block btn-outline-primary">LoadMore</a>
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+ 
+
+
+
+
+
+
+
+     

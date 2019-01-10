@@ -1,0 +1,176 @@
+﻿
+    <section class="hero hero-home no-padding">
+    <!-- Hero Slider-->
+    <div class="owl-carousel owl-theme hero-slider">
+
+
+
+
+        <div style=" background: url(img/banner.jpg); min-height: 200px !important; max-height:300px; background-size: cover !important;" ng-repeat=" xyz in searchcategoriesslider" class="item d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-6 text-white">
+                        <img width="300" height="250" src="{{GetcatBgImage(xyz.categoryImage)}}" alt="Alternate Text" />
+
+                    </div>
+
+                    <div class="col-md-6 text-white">
+                        <h4>{{xyz.categoryName}}</h4>
+                        <p class="lead">{{xyz.description}}</p>
+                        <!--<a href="/Home/GetAllProducts/?CategoryId={{xyz.Id}}" class="btn btn-template wide shop-now">Shop Now<i class="icon-bag"></i></a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+    <section class="men-collection gray-bg">
+        <div class="container">
+            <header class="text-center">
+                <h2 class="text-uppercase">Our Featured Picks</h2>
+            </header>
+
+            
+
+            <!-- Products Slider-->
+            <div class="owl-carousel owl-theme products-slider">
+                <!-- item-->
+                <div class="item" ng-repeat="x in pagedItems">
+                    <div class="product">
+                        <div class="image d-flex align-items-center justify-content-center" id="products-slider-{{x[4]}}" style="cursor:pointer">
+                            <span class="price pricetag text-muted">{{x[4]|currency:"₹ "}}</span>
+
+                            <img src="{{GetProductImage(x[2])}}" alt="product" class="img-fluid">
+                            <div class="hover-overlay d-flex align-items-center justify-content-center">
+                                <div class="CTA d-flex align-items-center justify-content-center">
+                                    <a ng-click="AddToCartGlobal(x[4],x,'products-slider-')" class="add-to-cart cursor"><i class="fa fa-shopping-cart"></i></a>
+                                    <a ng-click="SetProduct(x)" class="visit-product active cursor"><i class="icon-search"></i>View</a>
+                                    <a ng-click="getProductDetail(x)" class="quick-view cursor"><i class="fa fa-arrows-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+ <section class="women-collection">
+    <!-- Divider Section-->
+    <div class="container">
+
+
+
+        <header class="text-center">
+            <h2 class="text-uppercase">Top Rated Picks</h2>
+        </header>
+
+         
+
+        <div class="owl-carousel owl-theme topRated-slider">
+            <div class="item" ng-repeat="x in TopRatedItems">
+                <div class="product">
+                    <div style="background:#f2f2f2; cursor:pointer" class="image d-flex align-items-center justify-content-center" id="topRated-slider-{{x[4]}}">
+                        <span class="price pricetag text-muted">{{x[4]|currency:"₹ "}}</span>
+
+                        <img src="{{GetProductImage(x[2])}}" alt="product" class="img-fluid">
+                        <div class="hover-overlay d-flex align-items-center justify-content-center">
+                            <div class="CTA d-flex align-items-center justify-content-center">
+                                <a ng-click="AddToCartGlobal(x[4],x,'topRated-slider-')" class="add-to-cart cursor"><i class="fa fa-shopping-cart"></i></a>
+                                <a ng-click="SetProduct(x)" class="visit-product active cursor"><i class="icon-search"></i>View</a>
+                                <a ng-click="getProductDetail(x)" class="quick-view cursor"><i class="fa fa-arrows-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- Women's Collection -->
+<section class="women-collection gray-bg">
+    <div class="container">
+        <header class="text-center">
+            <h2 class="text-uppercase">Most Saled Picks</h2>
+        </header>
+
+         
+
+        <!-- Products Slider-->
+        <div class="owl-carousel owl-theme mostsaled-slider">
+            <!-- item-->
+
+            <div class="item" ng-repeat="x in MostSaledItems">
+                <div class="product">
+                    <div class="image d-flex align-items-center justify-content-center" id="mostsaled-slider-{{x[4]}}" style="cursor: pointer;">
+                        <span class="price pricetag text-muted">{{x[4]|currency:"₹ "}}</span>
+                        <img src="{{GetProductImage(x[2])}}" alt="product" class="img-fluid">
+                        <div class="hover-overlay d-flex align-items-center justify-content-center">
+                            <div class="CTA d-flex align-items-center justify-content-center">
+                                <a ng-click="AddToCartGlobal(x[4],x,'mostsaled-slider-')" class="add-to-cart cursor"><i class="fa fa-shopping-cart"></i></a>
+                                <a ng-click="SetProduct(x)" class="visit-product active cursor"><i class="icon-search"></i>View</a>
+                                <a ng-click="getProductDetail(x)" data-toggle="modal" data-target="#exampleModal" class="quick-view cursor"><i class="fa fa-arrows-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Blog Section-->
+<!-- Brands Section-->
+ 
+<!-- Overview Popup    -->
+<div id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade overview">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true"><i class="icon-close"></i></span></button>
+            <div class="modal-body">
+
+                <div class="row d-flex align-items-center">
+                    <div class="image col-lg-5"><img src="{{GetProductImage(ProductDetail[2])}}" alt="..." class="img-fluid d-block"></div>
+                    <div class="details col-lg-7">
+                        <h2>{{ProductDetail[3]}}</h2>
+                        <ul class="price list-inline">
+                            <li class="list-inline-item current">{{ProductDetail[4]| currency:"₹"}}</li>
+                        </ul>
+                        <div class="title">
+
+                            <span class="allattribute">
+
+                                <span class="attributesummary" ng-repeat="y in AttributesAllValue" ng-if="y.productattrId==ProductDetail[8]">
+                                    <span> &nbsp;{{y.attributeId}} </span>
+                                    <span>
+                                        <span>
+                                            <span> ({{y.attributeValue}}) </span> <span class="plusicon">,</span>
+                                        </span>
+
+                                    </span>
+                                </span>
+
+                            </span>
+
+                        </div>
+                        <hr />
+                        <p>{{ProductDetail[12]}}</p>
+
+                        <ul class="CTAs list-inline">
+                            <li class="list-inline-item"><a ng-click="AddToCartGlobal(ProductDetail[4],ProductDetail,'mostsaled-slider-')" class="btn btn-template wide"> <i class="fa fa-shopping-cart"></i>Add to Cart</a></li>
+                            <li class="list-inline-item"><a class="visit-product active btn btn-template-outlined wide" ng-click="addTowishList(ProductDetail[8])"> <i class="{{iconclass}}"></i>Add to wishlist</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

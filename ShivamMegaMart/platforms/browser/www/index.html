@@ -1,0 +1,467 @@
+﻿<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />-->
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- Icons -->
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" media="all" rel="stylesheet" type="text/css">
+    <!-- Styles -->
+    <link href="css/keyframes.css" rel="stylesheet" type="text/css">
+    <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
+    <link href="css/swiper.css" rel="stylesheet" type="text/css">
+    <link href="css/swipebox.min.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <title>SHIVAM Mega Mart</title>
+
+    <style>
+        .bg-shop {
+            background: url(https://kodework.com/wp-content/uploads/2015/12/ecommerceimage.jpg) no-repeat center / cover !important;
+        }
+    </style>
+</head>
+<body ng-app="AngularAuthApp">
+    <!--<div class="app">
+        <h1>PhoneGap</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div>
+    </div>-->
+    <div class="m-scene" id="main">
+        <!-- Sidebars -->
+        <!-- Right Sidebar -->
+        <ul id="slide-out" class="side-nav">
+            <li class="sidenav-header">
+                <!-- Srearch bar -->
+                <nav class="transparent no-shadow">
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" required>
+                                <label for="search"><i class="ion-android-search"></i></label>
+                                <i class="ion-android-close"></i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </li>
+            <!-- Tabs -->
+            <li>
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active" href="#sidebar1">Social</a></li>
+                    <li class="tab col s3"><a href="#sidebar2">Chat</a></li>
+                </ul>
+            </li>
+            <li id="sidebar1" class="p-20">
+                <!-- Twitter -->
+                <div class="twitter">
+                    <h6 class="follow-us"><i class="ion-social-twitter"></i> Follow us on Twitter</h6>
+                    <div class="tweet">
+                        <h3>@Codnauts</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod <a href="#">#tempor</a>.</p>
+                    </div>
+                    <div class="tweet">
+                        <h3>@Codnauts</h3>
+                        <p>Excepteur sint occaecat cupidatat non proident, sunt in <a href="#">#voluptate</a> culpa qui officia deserunt mollit anim.</p>
+                    </div>
+                    <div class="tweet">
+                        <h3>@Codnauts</h3>
+                        <p>At vero eos et accusamus et iusto odio <a href="#">#dignissimos</a> <a href="#">#ducimus</a> qui blanditiis praesentium.</p>
+                    </div>
+                </div>
+                <!-- Facebook -->
+                <div class="facebook">
+                    <h6 class="follow-us">Notifications</h6>
+                    <div class="face-notification">
+                        <img src="img/user2.jpg" alt="" class="cricle">
+                        <div>
+                            <p>Mike Green</p>
+                            <span>Sent you a message</span>
+                            <span class="small">Today at 16:48</span>
+                        </div>
+                    </div>
+                    <div class="face-notification">
+                        <img src="img/user.jpg" alt="" class="cricle">
+                        <div>
+                            <p>Lara Connors</p>
+                            <span>Post a photo with you</span>
+                            <span class="small">Today at 14:26</span>
+                        </div>
+                    </div>
+                    <div class="face-notification">
+                        <img src="img/user3.jpg" alt="" class="cricle">
+                        <div>
+                            <p>Mike Green</p>
+                            <span>Post something...</span>
+                            <span class="small">Yesterday at 03:19</span>
+                        </div>
+                    </div>
+                </div>
+
+            </li>
+            <li id="sidebar2" class="p-20">
+                <!-- Chat -->
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user.jpg" alt="" class="cricle">
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Mike Green</p>
+                        <span>Sent you a message</span>
+                        <span class="small">online</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user2.jpg" alt="" class="cricle">
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Lora Bell</p>
+                        <span>6 New messages</span>
+                        <span class="small">online</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user3.jpg" alt="" class="cricle">
+                        <span class="dot orange"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Tony Lee</p>
+                        <span>Away from keyboard.</span>
+                        <span class="small">Away</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user4.jpg" alt="" class="cricle">
+                        <span class="dot grey"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Jim Connor</p>
+                        <span>Is offline.</span>
+                        <span class="small">offline</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user5.jpg" alt="" class="cricle">
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Sara Lower</p>
+                        <span>Sent you a message</span>
+                        <span class="small">online</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user.jpg" alt="" class="cricle">
+                        <span class="dot grey"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>Mick Pole</p>
+                        <span>Is offline.</span>
+                        <span class="small">offline</span>
+                    </div>
+                </div>
+
+                <div class="chat-sidebar">
+                    <div class="chat-img">
+                        <img src="img/user3.jpg" alt="" class="cricle">
+                        <span class="dot green"></span>
+                    </div>
+                    <div class="chat-message">
+                        <p>James Tree</p>
+                        <span>Awaiting your reply.</span>
+                        <span class="small">online</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <!-- Left Sidebar -->
+        <ul id="slide-out-left" class="side-nav collapsible">
+            <li>
+                <div class="sidenav-header primary-color">
+                    <div class="nav-social">
+                        <i class="ion-social-facebook"></i>
+                        <i class="ion-social-twitter"></i>
+                        <i class="ion-social-tumblr"></i>
+                    </div>
+                    <div class="nav-avatar">
+                        <img class="circle avatar" src="img/user.jpg" alt="">
+                        <div class="avatar-body">
+                            <h3>Halo</h3>
+                            <p>Material Mobile</p>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-home"></i> Home <span class="badge blue lighten-2">5</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="index.html">Classic</a>
+                            <a href="index-sliced.html">Sliced</a>
+                            <a href="index-slider.html">Slider</a>
+                            <a href="index-drawer.html">Drawer</a>
+                            <a href="index-walkthrough.html">Walkthrough</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-exit"></i> Layout <span class="badge blue lighten-2">5</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="material.html">Material</a>
+                            <a href="left-sidebar.html">Left</a>
+                            <a href="right-sidebar.html">Right</a>
+                            <a href="dual-sidebar.html">Dual</a>
+                            <a href="blank.html">Blank</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-document"></i> Pages <span class="badge blue lighten-2">12</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="article.html">Article</a>
+                            <a href="event.html">Event</a>
+                            <a href="project.html">Project</a>
+                            <a href="player.html">Music Player</a>
+                            <a href="todo.html">ToDo</a>
+                            <a href="category.html">Category</a>
+                            <a href="product.html">Product</a>
+                            <a href="checkout.html">Checkout</a>
+                            <a href="search.html">Search</a>
+                            <a href="faq.html">Faq</a>
+                            <a href="coming-soon.html">Coming Soon</a>
+                            <a href="404.html">404</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-apps"></i> App <span class="badge blue lighten-2">11</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="calendar.html">Calendar</a>
+                            <a href="profile.html">Profile</a>
+                            <a href="chat.html">Chat</a>
+                            <a href="login.html">Login</a>
+                            <a href="signup.html">Sign Up</a>
+                            <a href="lockscreen.html">Lockscreen</a>
+                            <a href="forgot.html">Password</a>
+                            <a href="notification.html">Notification</a>
+                            <a href="chart.html">Chart</a>
+                            <a href="timeline.html">Timeline</a>
+                            <a href="activity.html">Activity</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-list"></i> Blog <span class="badge blue lighten-2">2</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="blog.html">Classic</a>
+                            <a href="blog-card.html">Card</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-image"></i> Gallery <span class="badge blue lighten-2">3</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="gallery-filter.html">Filter</a>
+                            <a href="gallery-masonry.html">Masonry</a>
+                            <a href="gallery-card.html">Card</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="collapsible-header">
+                    <i class="ion-android-camera"></i> Portfolio <span class="badge blue lighten-2">3</span>
+                </div>
+                <div class="collapsible-body">
+                    <ul class="collapsible">
+                        <li>
+                            <a href="portfolio-filter.html">Filter</a>
+                            <a href="portfolio-masonry.html">Masonry</a>
+                            <a href="portfolio-card.html">Card</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li><a href="shop.html" class="no-child"><i class="ion-android-playstore"></i> Shop</a></li>
+            <li><a href="video.html" class="no-child"><i class="ion-ios-videocam"></i> Video</a></li>
+            <li><a href="news.html" class="no-child"><i class="ion-social-rss"></i> News</a></li>
+            <li><a href="contact.html" class="no-child"><i class="ion-android-map"></i> Contact</a></li>
+        </ul>
+        <!-- Toolbar -->
+
+
+        <div id="content">
+            <div id="toolbar" class="halo-nav box-shad-none">
+                <div class="open-left" id="open-left" data-activates="slide-out-left">
+                    <i class="ion-android-menu"></i>
+                </div>
+                <span class="title none">Shop</span>
+                <div class="open-right" id="open-right" data-activates="slide-out">
+                    <i class="ion-android-person"></i>
+                </div>
+            </div>
+            <div class="h-banner animated fadeindown">
+                <div class="parallax bg-shop"></div>
+                <div class="banner-title">Shop</div>
+            </div>
+
+        </div>
+
+        <div class="animated fadeinup delay-1">
+            <route-loading-indicator></route-loading-indicator>
+            <section class="section-content" ng-if="!isRouteLoading" data-ng-view="" style="margin-top: -18px;"></section>
+            <div class="clr"></div>
+
+            <!-- Footer -->
+            <footer class="page-footer primary-color">
+                <div class="container">
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="center-align grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                            <div class="center-align">
+                                <i class="ion-social-facebook m-10 white-text"></i>
+                                <i class="ion-social-twitter m-10 white-text"></i>
+                                <i class="ion-social-pinterest m-10 white-text"></i>
+                                <i class="ion-social-dribbble m-10 white-text"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-copyright blue darken-1">
+                    <div class="container">
+                        2016 Codnauts
+                        <a class="grey-text text-lighten-4 right" href="#!">Privacy Policy</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- End of Sidebars -->
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.swipebox.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <script src="js/jquery.mixitup.min.js"></script>
+    <script src="js/masonry.min.js"></script>
+    <script src="js/chart.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        appCordova.initialize();
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.1/angular-sanitize.min.js"></script>
+
+    <script src="scripts/angular-local-storage.min.js"></script>
+    <script src="scripts/loading-bar.min.js"></script>
+    <script src="scripts/jquery.animate_from_to-1.0.js"></script>
+    <script src="scripts/toastr.js"></script>
+    <script src="scripts/bootbox.min.js"></script>
+    <!-- Load app main script -->
+    <script src="app/appNew.js?v=2"></script>
+
+    <!-- Load services -->
+    <script src="app/services/authInterceptorService.js?v=2"></script>
+    <script src="app/services/authService.js?v=2"></script>
+    <script src="app/services/ordersService.js?v=2"></script>
+    <script src="app/services/tokensManagerService.js?v=2"></script>
+    <!-- Load controllers -->
+    <script src="app/controllers/indexControllernew.js?v=2"></script>
+    <script src="app/controllers/homeControllernew.js?v=2"></script>
+    <script src="app/controllers/loginControllerNew.js?v=2"></script>
+    <script src="app/controllers/signupController.js?v=2"></script>
+    <script src="app/controllers/ordersController.js?v=2"></script>
+    <script src="app/controllers/refreshController.js?v=2"></script>
+    <script src="app/controllers/tokensManagerController.js?v=2"></script>
+    <script src="app/controllers/productControllerNew.js"></script>
+    <script src="app/controllers/shoppingCartControllerNew.js"></script>
+    <script src="app/controllers/checkOutControllerNew.js"></script>
+    <script src="app/controllers/ProductDetailControllerNew.js"></script>
+    <script src="app/controllers/OrderItemBillingController.js"></script>
+    <script src="app/controllers/WishListController1.js"></script>
+    <script src="app/controllers/contactController.js"></script>
+</body>
+</html>

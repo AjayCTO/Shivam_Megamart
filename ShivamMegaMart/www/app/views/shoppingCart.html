@@ -1,0 +1,125 @@
+﻿<section class="hero hero-page gray-bg padding-small">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-9 order-2 order-lg-1">
+                <h3>Shopping cart</h3><p class="lead text-muted">You currently have {{shoppingCart.length}} items in your shopping cart</p>
+            </div>
+            <div class="col-lg-3 text-right order-1 order-lg-2">
+                <ul class="breadcrumb justify-content-lg-end">
+                    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#/Product">Shop</a></li>
+               
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="shopping-cart padding-small">
+    <div class="container">
+        <div ng-show="shoppingCart.length==0" class="basket-holder">
+            <h3 class="text-center">Empty Cart</h3>
+            <p class="text-center">Your Shopping Cart is empty.</p>
+            <div class="text-center"><img src="../../img/empty-cart-png.png" height="180" /></div>
+            <div class="text-center"><a href="#/Product" class="btn btn-template wide">Continue Shopping</a></div>
+        </div>
+        <div class="row" ng-hide="shoppingCart.length==0">
+       
+            <div class="col-md-8 col-sm-6" >
+                <div class="basket">
+
+                    <div class="basket-holder">
+
+                        <div class="basket-body">
+                            <div class="block-header" style="margin-left: -36px; margin-right: -15px;">
+                                <h6 class="">My Shopping Cart ({{shoppingCart.length}} Items)</h6>
+                                <span class="pull-right" style=" position: absolute; right: 65px; top: 16px;"> Total: {{TotalCartItems |currency:"₹ "}}</span>
+                            </div>
+                            <div class="item" ng-repeat="item in shoppingCart track by $index">
+                                <div class="row" style="  height: 134px;">
+                                    <div class=" col-sm-3">
+                                        <img src="{{GetProductImageGlobal(item.image)}}" alt="..." class="img-fluid" style="height: 132px; margin-left: -15px; width: 100%; ">
+
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <div class="title">
+                                            <a>
+                                                <h5 style=" position: absolute; left: -36px; top: 1px; ">{{item.productName}}</h5>
+                                            </a>
+                                        </div>
+                                        <span style="position: absolute; right: 37px; top: 1px">{{item.productPrice*item.Quantity|currency:"₹ "}}</span>
+                                        <p style=" position: absolute; left: -35px; top: 68px; ">Qty:</p>
+                                        <div class="quantity d-flex" style="position:absolute;left: 4px; top: 65px; ">
+
+                                            <div class="dec-btn" ng-click="UpdateQuantity(2,$index)">-</div>
+                                            <input type="text" ng-model="item.Quantity" class="quantity-no">
+                                            <div class="inc-btn" ng-click="UpdateQuantity(1,$index)">+</div>
+                                        </div>
+                                        <a ng-click="RemoveCartGlobal(item)" style=" position: absolute; top: 114px; left:-36px"><i class="delete fa fa-trash"> Remove</i></a>
+                                        <a ng-click="addTowishList(item.productattrId)" style=" position: absolute; top: 114px; left: 53px"><i class="delete fa fa-heart"> Move to Wishlist</i></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Product-->
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-md-4">
+
+                <div class="block">
+                    <div class="block-header">
+                        <h6 class="text-uppercase">Order Summary</h6>
+                    </div>
+                    <div class="block-body">
+                        <p>Shipping and additional costs are calculated based on values you have entered.</p>
+                        <ul class="order-menu list-unstyled">
+                            <li class="d-flex justify-content-between"><span>Order Subtotal </span><strong>${{TotalCartItems}}</strong></li>
+                            <!--<li class="d-flex justify-content-between"><span>Shipping and handling</span><strong>$10.00</strong></li>
+                        <li class="d-flex justify-content-between"><span>Tax</span><strong>$0.00</strong></li>-->
+                            <li class="d-flex justify-content-between"><span>Total</span><strong class="text-primary price-total">${{TotalCartItems}}</strong></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="block">
+                    <div class="block-header">
+                        <h6 class="text-uppercase">Coupon Code</h6>
+                    </div>
+                    <div class="block-body">
+                        <p>If you have a coupon code, please enter it in the box below</p>
+                        <form action="#">
+                            <div class="form-group d-flex">
+                                <input type="text" name="coupon">
+                                <button type="submit" class="cart-black-button">Apply coupon</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        
+
+        </div>
+    <div class="col-lg-12 text-center CTAs">
+        <a href="/#checkout" ng-if="shoppingCart.length!=0" class="btn btn-template btn-lg wide">Proceed to checkout<i class="fa fa-long-arrow-right"></i></a>
+
+        <a href="/#checkout" ng-if="shoppingCart.length==0" class="btn btn-template btn-lg wide disabled">Proceed to checkout<i class="fa fa-long-arrow-right"></i></a>
+    </div>
+    </section>
+
+      
+
+<style>
+    .basket .item img {
+        max-width: 110px;
+    }
+</style>

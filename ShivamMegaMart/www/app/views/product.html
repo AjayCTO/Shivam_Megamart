@@ -1,0 +1,793 @@
+﻿
+<style>
+    .img-fluid {
+        max-height: 100%;
+    }
+
+
+
+    .block.attribute {
+        background: #f8f8f8;
+        max-height: 230px;
+        overflow: hidden;
+        margin-bottom: 15px;
+        padding: 0;
+    }
+
+
+
+        .block.attribute .form-group {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+
+
+
+        .block.attribute h6 {
+            padding: 8px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            background: #efefef;
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+
+            .block.attribute h6 span {
+                font-size: 15px;
+                color: #069;
+                font-weight: 400;
+                cursor: pointer;
+            }
+
+
+    .product .title {
+        padding: 0;
+    }
+
+    .block.category {
+        padding: 0;
+        border: none;
+        box-shadow: none;
+    }
+
+        .block.category h6 {
+            color: #fff;
+            font-weight: 400;
+            padding: 12px;
+            margin-bottom: 0;
+            padding-top: 16px;
+            padding-bottom: 16px;
+        }
+
+        .block.category ul {
+            padding: 10px;
+            box-shadow: 0px 0px 3px #ccc;
+        }
+
+    .products-grid {
+        padding: 40px 0;
+    }
+
+
+    .sidebar {
+        padding: 40px 0;
+    }
+
+    .sidebar-left {
+        padding: 40px 20px;
+    }
+
+
+
+
+    header.bg-primary {
+        color: #fff;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        padding-left: 12px;
+        padding-right: 12px;
+        margin-bottom: 0;
+    }
+
+        header.bg-primary .visible-items {
+            color: #fff !important;
+            line-height: 40px;
+        }
+
+
+    .product-content {
+        padding: 20px;
+        box-shadow: 0px 0px 3px #e1e1e1;
+        min-height: 500px;
+    }
+
+    .cursor {
+        cursor: pointer;
+    }
+    .sidebar h6 {
+        margin-bottom: 0px;
+    }
+</style>
+<style>
+    section.hero .item {
+        padding: 150px 0;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        background-position: center !important;
+        background-color: #000 !important;
+    }
+
+    section.hero.hero-home h1 {
+        text-shadow: 8px 2px 7px rgba(0,0,0,0.8);
+        font-size: 50px;
+        font-family: cursive;
+        margin-top: 32px;
+    }
+
+    .top-bar {
+        background: #4361D5;
+        color: #fff;
+        font-size: 0.85em;
+        padding: 15px 1rem;
+        font-weight: 300;
+    }
+
+    .lead {
+        font-size: 21px;
+        font-weight: 300;
+        width: fit-content;
+        padding: 10px;
+        color: #e5e5e5;
+    }
+
+    .img-fluid {
+        max-height: 100%;
+    }
+
+    .timeline-item {
+        background: #fff;
+    }
+
+    .cursor {
+        cursor: pointer;
+    }
+
+    .pricetag {
+        position: absolute;
+        right: 6px;
+        top: 19px;
+        background: #8bc34a;
+        color: #fff !important;
+        font-size: 13px;
+        padding: 4px;
+        border-radius: 16px;
+        padding-left: 7px;
+        font-family: cursive;
+        padding-right: 7px;
+    }
+
+    .product .title {
+        padding: 15px 0;
+        background: #e9f3f2;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+        .product .title .h6 {
+            font-size: 1rem;
+            color: #000;
+            font-weight: 100;
+            font-size: 19px;
+            font-family: serif;
+        }
+
+    .attributesummary {
+        color: #162f46;
+        font-size: 13px;
+    }
+
+    .plusicon {
+        color: #333;
+    }
+
+
+    .allattribute .attributesummary:last-child .plusicon {
+        display: none;
+    }
+    .catstyle {
+        list-style-type: none;
+    }
+
+    .downarrow {
+        position: absolute;
+        top: 14px;
+        right: 9px;
+    }
+</style>
+
+<style>
+    /*ABout product new cart style*/
+    .dlist-align dt {
+        width: 90px;
+        float: left;
+        word-wrap: break-word;
+    }
+
+    .dlist-align {
+        margin: 0px;
+        padding: 0px;
+    }
+
+        .dlist-align dd {
+            margin-left: 120px;
+            vertical-align: baseline;
+        }
+
+    .list-inline {
+        padding-left: 0;
+        list-style: none;
+        display: contents;
+    }
+
+    .text-muted {
+        margin-left: 15px;
+    }
+</style>
+
+
+
+
+
+
+    <section id="productscroll" class="hero hero-page gray-bg padding-small">
+    <div class="container-fluid">
+        <div class="container-fluid d-flex">
+            <div class="col-lg-9 order-2 order-lg-1">
+                <h3>Products</h3><p class="lead text-muted"></p>
+            </div>
+            <div class="col-lg-3 text-right order-1 order-lg-2">
+                <ul class="breadcrumb justify-content-lg-end">
+                    <li class="breadcrumb-item"><a href="#/home">Home</a></li>
+                    <li class="breadcrumb-item active">Products</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
+ 
+        <div class="container-fluid">
+            <div class="row" style="margin:0px !important;">
+                <!-- Sidebar-->
+                <div class="sidebar col-xl-3 col-lg-4 sidebar">
+
+                    <div class="card">
+                        <header class="card-header">
+                            <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-target="#collapse22">
+
+                                <h6 class="title">By Category <i class="fa fa-chevron-down downarrow"></i></h6>
+                            </a>
+                        </header>
+                        <div style="" class="filter-content collapse show" id="collapse22">
+                            <ul class="catstyle">
+
+                                <li ng-repeat="parentCategory in categories" ng-if="parentCategory.categories1.length==0">
+                                    <div class="form-group mb-1"><input type="checkbox" ng-click="AddCatArray(parentCategory.id)" ng-checked="categoriesarraySelect.indexOf(parentCategory.id) > -1" name="name{{parentCategory.categoryName }}" id="name{{parentCategory.id}}" class="checkbox-template" value=""><label for="brand0" class="d-flex justify-content-between align-items-center" ng-click="AddCatArray(parentCategory.id)">{{parentCategory.categoryName }}</label></div>
+
+                                </li>
+
+                                <li ng-repeat="parentCategory in categories" ng-if="parentCategory.categories1.length>0">
+                                    <div class="form-group mb-1"><input type="checkbox" ng-click="AddCatArray(parentCategory.id)" ng-checked="categoriesarraySelect.indexOf(parentCategory.id) > -1" name="name{{parentCategory.categoryName }}" id="name{{parentCategory.categoryName}}" class="checkbox-template" value=""><label for="brand0" class="d-flex justify-content-between align-items-center" ng-click="AddCatArray(parentCategory.id)">{{parentCategory.categoryName }}</label></div>
+
+
+                                    <ul class="list-unstyled">
+                                        <li>
+
+                                            <div class="form-group mb-1" ng-repeat="subcat in parentCategory.categories1">
+                                                <input type="checkbox" ng-click="AddCatArray(subcat.id)" ng-checked="categoriesarraySelect.indexOf(subcat.id) > -1" name="name{{ subcat.categoryName }}" id="name{{ subcat.CategoryName }}" class="checkbox-template" value="">
+                                                <label for="brand0" ng-click="AddCatArray(subcat.id)">{{subcat.categoryName}} </label>
+
+
+                                            </div>
+
+                                        </li>
+                                    </ul>
+
+                                </li>
+
+
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <header class="card-header">
+                            <a data-toggle="collapse" data-target="#collapse33" aria-expanded="true" class="">
+                                <!--<i class="fa fa-chevron-down"></i>-->
+                                <h6 class="title">By Price <i class="fa fa-chevron-down downarrow"></i> </h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse33" style="">
+                            <div class="card-body">
+                                <input type="range" class="custom-range" min="0" max="100" name="">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Min</label>
+                                        <input class="form-control" placeholder="$0" type="number">
+                                    </div>
+                                    <div class="form-group text-right col-md-6">
+                                        <label>Max</label>
+                                        <input class="form-control" placeholder="$1,0000" type="number">
+                                    </div>
+                                </div> <!-- form-row.// -->
+                                <button class="btn btn-block btn-outline-primary">Apply</button>
+                            </div> <!-- card-body.// -->
+                        </div>
+                    </div>
+                    <!--<div class="block">
+        <h6 class="text-uppercase">Price</h6>
+        <div id="slider-snap" class="noUi-target noUi-ltr noUi-horizontal"></div>
+        <div class="value d-flex justify-content-between">
+            <div class="min">From  ₹ <span id="slider-snap-value-lower" class="example-val"></span></div>
+            <div class="max">To  ₹ <span id="slider-snap-value-upper" class="example-val"></span></div>
+        </div>-->
+                    <!--<button ng-click="pricefilter()" name="pricefilter" id="pricefitler" class="btn btn-template">filter</button>-->
+                    <!--</div>-->
+                    <!----- Product Attribute---->
+
+                    <div class="card">
+                        <header class="card-header">
+                            <a data-toggle="collapse" data-target="#collapse34" aria-expanded="true" class="">
+                                <!--<i class="fa fa-chevron-down"></i>-->
+                                <h6 class="title">By Attributes <i class="fa fa-chevron-down downarrow"></i> </h6>
+                            </a>
+                        </header>
+                        <div class="filter-content collapse show" id="collapse34" style="">
+                            <div class="card-body">
+                                <div class="block attribute list_{{Attribute.attributeName}}" ng-repeat="Attribute in Attributes">
+                                    <h6 class="">{{Attribute.attributeName}} <span class="more_{{Attribute.attributeName}}" style="float:right;" ng-click="showallattribute(Attribute.attributeName)"> + More</span> <span class="less_{{Attribute.attributeName}}" style="float:right; display:none;" ng-click="hideallattribute(Attribute.attributeName)"> - Less</span> </h6>
+
+
+
+                                    <div style="max-width:300px; overflow-y:auto;" class="form-group  mb-1" ng-repeat="attrValue in AttributesValue|unique:'attributeValue'" ng-if="Attribute.id==attrValue.attributeId">
+
+                                        <div ng-if="attrValue.attributeValue!=null">
+
+                                            <input type="checkbox" id="attr_{{attrValue.attributeValue}}" name="attr_{{attrValue.attributeValue}}" ng-click="IsFilterChecked(Attribute.attributeName,attrValue.attributeValue)" ng-checked="attrarraySelect.indexOf(attrValue.attributeValue) > -1" class="checked">
+
+                                            <!--<i id="attr_{{attrValue.attributeId}}" ng-click="IsFilterChecked(Attribute.attributeName,attrValue.attributeValue,attrValue.attributeId,$index)" ng-class="{'fa-check-square-o':SetCheckedAttribute(Attribute.attributeName,attrValue.attributeValue)==true}" class="fa fa-square-o">
+                            </i>-->
+                                            <label for="brand0">
+                                                <span ng-if="Attribute.attributeName=='Color'" class="colorcheck" style="background-color:{{attrValue.attributeValue; }}"></span>
+                                                {{attrValue.attributeValue}}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                        </div>
+                        <!-- /Sidebar end-->
+                        <!-- Grid -->
+                        <div class="col-xl-9 col-lg-8 sidebar-left">
+
+                            <!--<header class="d-flex justify-content-between align-items-start bg-primary">
+                <button type="button" ng-click="Clearfilter()" class="btn btn-template"><i class="fa fa-filter"></i>Clear filter</button>
+                <span class="visible-items">Showing <strong>{{pagedItems.length}} </strong>of <strong>{{total}} </strong>results</span>
+
+            </header>-->
+                            <!--<div class="product-content">-->
+
+
+                            <div ng-show="loadallproducts==false" class="loadingjunk">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br /><br /><br />
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                                <br /><br /><br />
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="timeline-wrapper">
+                                            <div class="timeline-item">
+                                                <div class="animated-background facebook">
+                                                    <div class="background-masker header-top"></div>
+                                                    <div class="background-masker header-left"></div>
+                                                    <div class="background-masker header-right"></div>
+                                                    <div class="background-masker header-bottom"></div>
+                                                    <div class="background-masker subheader-left"></div>
+                                                    <div class="background-masker subheader-right"></div>
+                                                    <div class="background-masker subheader-bottom"></div>
+                                                    <div class="background-masker content-top"></div>
+                                                    <div class="background-masker content-first-end"></div>
+                                                    <div class="background-masker content-second-line"></div>
+                                                    <div class="background-masker content-second-end"></div>
+                                                    <div class="background-masker content-third-line"></div>
+                                                    <div class="background-masker content-third-end"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div ng-if="totalrecord==0" style="text-align:center; border:none;" class="card">
+
+                                <img src="../img/nodata.png" alt="Alternate Text" />
+
+                                <h4 style="color:#888; font-weight:200;">Something went wrong !!</h4>
+                                <p>No such data found !!</p>
+
+
+                            </div>
+
+
+
+                            <div ng-show="loadallproducts==true" class="container-fluid">
+
+                                <article class="card card-product row" ng-repeat="x in pagedItems" style="margin-bottom:10px;">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <aside class="col-sm-3">
+                                                <div class="img-wrap"><img src="{{GetProductImage(x[13])}}" alt="product" class="img-fluid"></div>
+                                            </aside> <!-- col.// -->
+                                            <article class="col-sm-6">
+
+                                                <h4 class="title"> {{x[9]}} </h4>
+                                                <div class="review d-flex align-items-center">
+                                                    <ul class="rate list-inline">
+                                                        <li class="list-inline-item"><i class="fa fa-star text-primary"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star text-primary"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star text-primary"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star text-primary"></i></li>
+                                                        <li class="list-inline-item"><i class="fa fa-star-o text-primary"></i></li>
+
+                                                    </ul>
+                                                    <span class="text-muted ng-binding">0 Reviews</span>
+                                                    <span class="text-muted ng-binding">0 Orders</span>
+                                                </div> <!-- rating-wrap.// -->
+                                                <p>
+                                                    {{x[10]|limitTo:limit}}
+
+                                                    <a ng-show="checklimit==false" style="cursor:pointer" ng-click="incrementLimit()"> ...more</a><a ng-show="checklimit==true" style="cursor:pointer" ng-click="decrementLimit()"> ...less</a>
+                                                </p>
+                                             
+                                                <!--<dl class="dlist-align" ng-repeat="y in AllProductsColumns">
+                                    <dt>{{y.ColName}}</dt>
+                                    <dd><span> {{x[y.colIndex]}} </span> </dd>
+                                </dl>-->
+
+                                            </article> <!-- col.// -->
+                                            <aside class="col-sm-3 border-left">
+                                                <div class="action-wrap">
+                                                    <div class="price-wrap h4">
+                                                        <span class="price"> {{x[5]|currency:"₹ "}}</span>
+                                                        <!--  <del class="price-old"> $98</del>-->
+                                                    </div> <!-- info-price-detail // -->
+                                                    <p class="text-success">Free shipping</p>
+                                                    <br>
+                                                    <p>
+                                                        <a ng-click="AddToCartGlobal(x[4],x,'products-')" class="btn btn-primary">Cart</a>
+                                                        <a ng-click="SetProduct(x)" class="btn btn-secondary"> Details  </a>
+                                                    </p>
+                                                    <a ng-click="addTowishList(x[4])"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                                </div> <!-- action-wrap.// -->
+                                            </aside> <!-- col.// -->
+                                        </div> <!-- row.// -->
+                                    </div> <!-- card-body .// -->
+                                </article> <!-- product-list.// -->
+                                <!-- item-->
+                                <!--<div class="item col-xl-4 col-md-6" ng-repeat="x in pagedItems" style="display:none;">
+                    <div class="product is-gray animated fadeIn">
+                        <div class="image d-flex align-items-center justify-content-center" id="products-{{x[8]}}" style="cursor: pointer;">
+                            <div class="ribbon ribbon-primary text-uppercase">Sale</div>
+                            <span class="price pricetag text-muted">{{x[5]|currency:"₹ "}}</span>
+                            <img src="{{GetProductImage(x[13])}}" alt="product" class="img-fluid">
+                            <div class="hover-overlay d-flex align-items-center justify-content-center">
+                                <div class="CTA d-flex align-items-center justify-content-center">
+                                    <a ng-click="AddToCartGlobal(x[8],x,'products-')" class="add-to-cart cursor"><i class="fa fa-shopping-cart"></i></a>
+                                    <a ng-click="SetProduct(x)" class="visit-product active cursor"><i class="icon-search"></i>View</a>
+                                    <a ng-click="getProductDetail(x)" class="quick-view cursor"><i class="fa fa-arrows-alt"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="title">
+
+                            <h3 class="h6 text-uppercase no-margin-bottom">{{x[9]}}</h3>
+                            <span class="allattribute">
+
+                                <span class="attributesummary" ng-repeat="y in AttributesAllValue" ng-if="y.productattrId==x[6]">
+
+
+
+                                    <span> &nbsp;{{y.attributeId}} </span>
+                                    <span>
+                                        <span>
+                                            <span> ({{y.attributeValue}}) </span> <span class="plusicon">,</span>
+                                        </span>
+
+                                    </span>
+
+                                </span>
+
+                            </span>
+
+                        </div>-->
+                                <!--<div class="title">
+
+                    <h3 class="h6 text-uppercase no-margin-bottom">{{x[3]}}</h3>
+                    <span class="allattribute">
+
+                        <span class="attributesummary" ng-repeat="y in Attributes">
+                            <span> &nbsp;{{y.attributeName}} </span>
+                            <span ng-repeat="val in AttributesValue" ng-if="val.productattrId==x[8]">
+                                <span ng-if="y.id==val.attributeId">
+                                    <span> ({{val.attributeValue}}) </span> <span class="plusicon">,</span>
+                                </span>
+
+                            </span>
+                        </span>
+
+                    </span>
+
+                </div>-->
+                                <!--</div>
+                </div>-->
+
+                            </div>
+
+
+                            <div ng-show="loadmore==true" class="row">
+                                <div class="col-md-12">
+
+                                    <div style="text-align:center;">
+                                        <img src="../img/ajax_loading.gif" width="100" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!--</div>-->
+
+                        </div>
+                        <!-- / Grid End-->
+                    </div>
+        </div>
+
+
+        
+        <input type="hidden" name="name" id="sliderChange" />
+ 
+    <!-- Overview Popup    -->
+    <!--<div id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true" class="modal fade overview">
+    <div role="document" class="modal-dialog">
+        <div class="modal-content">
+            <button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true"><i class="icon-close"></i></span></button>
+            <div class="modal-body">
+
+                <div class="row d-flex align-items-center">
+                    <div class="image col-lg-5"><img src="{{GetProductImage(ProductDetail[13])}}" alt="..." class="img-fluid d-block"></div>
+                    <div class="details col-lg-7">
+                        <h2>{{ProductDetail[9]}}</h2>
+                        <ul class="price list-inline">
+                            <li class="list-inline-item current">{{ProductDetail[5]|currency:"₹"}}</li>
+                        </ul>
+                        <p>{{ProductDetail[10]}}</p>
+
+                        <ul class="CTAs list-inline">
+                            <li class="list-inline-item"><a  class="btn btn-template wide"> <i class="fa fa-shopping-cart"></i>Add to Cart</a></li>
+                            <li class="list-inline-item"><a class="visit-product active btn btn-template-outlined wide" ng-click="addTowishList(ProductDetail[8])"> <i class="icon-heart"></i>Add to wishlist</a></li>   </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+
+
+
+<!--<script>
+
+
+    $('html, body').animate({
+        scrollTop: $("#productscroll").offset().top
+    }, 0);
+</script>-->
+
+<!--<script>
+    var snapSlider = document.getElementById('slider-snap');
+    noUiSlider.create(snapSlider, {
+        start: [0, 10000],
+        snap: false,
+        connect: true,
+        step: 1,
+        range: {
+            'min': 0,
+            'max': 10000
+        }
+    });
+    var snapValues = [
+      document.getElementById('slider-snap-value-lower'),
+      document.getElementById('slider-snap-value-upper')
+    ];
+    snapSlider.noUiSlider.on('update', function (values, handle) {
+        snapValues[handle].innerHTML = values[handle];
+        $("#sliderChange").val(values[handle]);
+        $("#sliderChange").trigger("change");
+    });
+</script>-->
+<!--<script>
+    $(document).ready(function () {
+        debugger;
+        var showChar = 10;
+        var ellipsestext = "...";
+        var moretext = "more";
+        var lesstext = "less";
+        $('.more').each(function () {
+            var content = $(this).html();
+
+            if (content.length > showChar) {
+
+                var c = content.substr(0, showChar);
+                var h = content.substr(showChar - 1, content.length - showChar);
+
+                var html = c + '<span class="moreellipses">' + ellipsestext + '&nbsp;</span><span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">' + moretext + '</a></span>';
+
+                $(this).html(html);
+            }
+
+        });
+
+        $(".morelink").click(function () {
+            if ($(this).hasClass("less")) {
+                $(this).removeClass("less");
+                $(this).html(moretext);
+            } else {
+                $(this).addClass("less");
+                $(this).html(lesstext);
+            }
+            $(this).parent().prev().toggle();
+            $(this).prev().toggle();
+            return false;
+        });
+    });
+
+
+    </script>-->
+<style>
+    #loadingmessage {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        vertical-align: middle;
+        background: transparent;
+        display:none;
+    }  
+</style>
+<!--<script src="js/front.js"></script>
+<script>
+    $("html, body").animate({ scrollTop: 0 }, 0);
+</script>-->

@@ -1,0 +1,147 @@
+﻿
+<!--<section id="customerwishlistscroll"class="hero hero-page gray-bg padding-small">
+    <div class="container">
+        <div class="row d-flex">
+            <div class="col-lg-9 order-2 order-lg-1">
+                <h3>My Wishlist ({{CurrentWishList.length}}) Items</h3><p class="lead text-muted"></p>
+            </div>
+            <div class="col-lg-3 text-right order-1 order-lg-2">
+                <ul class="breadcrumb justify-content-lg-end">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active">My Wish List</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>-->
+
+<section class="section-content bg padding-y">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3">
+              
+                <h5 id="autheticatuser" data-toggle="collapse" data-target="#collapse70"><i class="icon-sm round border fa fa-user"></i> {{authentication.userName}}</h5><i style=" margin-top: -30px; margin-right: 5px; float: right; font-size: 114%;"class="icon-action fa fa-chevron-down"></i>
+                    <hr />
+       
+                <div class="card" id="collapse70">
+
+                    <article class="card-group-item">
+
+                        <div class="list-group list-group-flush">
+                            <a href="#/orders" class="list-group-item"><i class="fa fa-th"> </i>&nbsp;&nbsp;My Orders  </a>
+                            <a class="list-group-item active" style="background: #2c387e;"><i class="fa fa-heart"> </i>&nbsp;&nbsp;Wish List </a>
+                            <a href="" data-ng-click ="logOut()" class="list-group-item"><i class="fa fa-sign-out"> </i>&nbsp;&nbsp;Sign Out</a>
+                         </div>  <!-- list-group .// -->
+
+                    </article> <!-- card-group-item.// -->
+
+                </div> <!-- card.// -->
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12" style=" margin-top: 14px; ">
+                        <button onclick="deleteall()" class="pull-right" ng-show="CurrentWishList.length>0"><i class="fa fa-trash"></i> Delete All</button>
+                        <h4>Your Wish List Items({{CurrentWishList.length}})</h4>
+                        <hr />
+                    </div>
+
+                    <div class="col-md-4"  style="margin-bottom:10px" ng-repeat="x in CurrentWishList  track by $index">
+
+                        <div class="card">
+                            <div class="bg-blue card-header noradius">
+                                <h6 style="cursor: pointer; font-weight: bold;" ng-click="SetProduct(x)" class="title text-truncate">{{x.productName}}</h6>
+
+                                <span class="badge-new" style="position: absolute; top: 55px; left: 2px; background-color: #618833"> {{x.productPrice|currency:"₹"}} </span>
+                            </div>
+                            <div style="padding-bottom:0; text-align:center;" class="card-body">
+                                <!--<div class="ribbon ribbon-primary">Item {{$index+1}}</div>-->
+
+                                <img src="{{GetProductImage(x.image)}}" alt="Han Solo" class="imgproduct">
+
+                                <div style="padding-top:20px;" class="row">
+                                    <div style="padding-left:0; padding-right:0" class="col-6">
+                                        <a ng-click="AddToCartGlobal(x.productattrId,x,'products-slider-')" style="width:100%; text-align:center;" ng-disabled="true" class="noradius active btn btn-primary"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                    </div>
+                                    <div style="padding-left:0; padding-right:0" class="col-6">
+                                        <a style="width:100%; text-align:center; color:#fff" ng-click="RemoveFromwishList(x.id)" class="noradius removebtn btn btn-danger"><i class="fa fa-close"></i> Remove</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                           
+                           
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="myModal" role="dialog" style=" position: absolute; left: 139px; top: 348px;">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+
+                            <div class="modal-body">
+                                <img src="../../img/loading_io.gif" style="width:100px; height:100px">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <div ng-show="CurrentWishList.length==0" class="col-xl-12 wishscroll align-items-center">
+
+                    <h4 class="text-center">your wish list is EMPTY</h4>
+                    <p class="text-center">Save your favorite item in one place. Add now, buy later.</p>
+                    <div class="text-center"><img src="../../img/emptyWishlist.png" height="150" /></div>
+                    <div class="text-center"><a href="#/Product" class="btn btn-template wide">Continue Shopping</a></div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <!--<div class="container-fluid">
+        <div class="share-product gray-bg d-flex align-items-center justify-content-center flex-column flex-md-row">
+            <strong class="text-uppercase">Share this on</strong>
+            <ul class="list-inline text-center">
+                <li class="list-inline-item"><a href="#" target="_blank" title="twitter"><i class="fa fa-twitter"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank" title="facebook"><i class="fa fa-facebook"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank" title="instagram"><i class="fa fa-instagram"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                <li class="list-inline-item"><a href="#" target="_blank" title="vimeo"><i class="fa fa-vimeo"></i></a></li>
+            </ul>
+        </div>
+    </div>-->
+
+</section>
+
+
+<style>
+    .imgproduct {
+   
+        width: 203px;
+        height: 206px;
+    }
+    .modal-backdrop {
+        border:none;
+    }
+    .modal-content {
+        background-color: transparent !important;
+        border: none;
+    }
+</style>
+
+<script>
+    function deleteall() {
+        $('.removebtn').each(function () {
+            $(this).trigger("click");
+
+        });
+    }
+</script>
+

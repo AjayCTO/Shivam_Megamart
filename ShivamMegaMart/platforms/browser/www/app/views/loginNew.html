@@ -1,0 +1,123 @@
+﻿
+<section class="section-content bg padding-y">
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Account login</h2>
+                        <hr />
+                    </div>
+                </div>
+
+
+                <div class="row mt-5">
+
+
+
+                    <div class="col-md-6 ">
+                        <div class="card card-block p20">
+                            <h3>Login</h3>
+                            <p>If you have an account with us, please log in.</p>
+                            <hr />
+                            <p class="alert alert-danger text-center" data-ng-hide="message == ''">  {{message}}</p>
+                            <form role="form">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">User Name</label>
+                                    <input type="text" data-ng-model="loginData.userName" class="form-control" id="exampleInputEmail1" placeholder="Enter User Name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" data-ng-model="loginData.password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div><br />
+                                <button type="button" data-ng-click="login('login')" class="btn btn-primary" ng-disabled="isDisabled">
+                                    <i class="fa fa-sign-in"></i> Login <span ng-show="loading"><i class="fa fa-refresh  fa-spin"></i></span>
+                                </button>
+                                <div class="col-md-6 text-right">
+                                    <a class="small" href="#/ForgotPassword">Forgot password?</a>
+                                </div>
+                                <br /><br />
+                            </form>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6  mb-5">
+                        <div class="card p20">
+                            <div class="card-block">
+
+                                <h3>New Customers</h3>
+                                <p>If you don't have an account with us, please create.</p>
+                                <hr />
+                                <div data-ng-hide="messages == ''" data-ng-class="(savedSuccessfully) ? 'alert alert-success' : 'alert alert-danger'">
+                                    {{messages}}
+                                </div>
+                                <form role="form">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="FirstName">First Name</label>
+                                                <input type="text" data-ng-model="registration.firstname" class="form-control" id="FirstName" placeholder="Enter User Name">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group">
+                                                <label for="LastName">Last Name</label>
+                                                <input type="text" class="form-control" id="LastName" data-ng-model="registration.lastname" placeholder="Last Name">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RegEmail">Email</label>
+                                        <input type="email" data-ng-model="registration.email" placeholder="Email address" class="form-control" id="RegEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Phone">Phone Number</label>
+                                        
+                                        <input id="Phone" name="Phone" class="form-control" data-ng-model="registration.phone" placeholder="Phone number" type="text">
+
+                                    </div> 
+                                    <h5>Login Detail</h5>
+                                    
+                                    <hr />
+                                    <div class="form-group">
+                                        <label for="RegUserName">User Name</label>
+                                        <input type="text" data-ng-model="registration.userName" placeholder="User Name" class="form-control" id="RegUserName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="RegPassword">Password</label>
+                                        <input type="password" data-ng-model="registration.password" class="form-control" id="RegPassword" placeholder="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="ConfirmPassword">Confirm Password</label>
+                                        <input type="password" data-ng-model="registration.confirmPassword" class="form-control" id="ConfirmPassword" placeholder="Password">
+                                    </div>
+                                    <br />
+                                    <button type="button" class="btn btn-primary" ng-disabled="isDisabledsignup" data-ng-click="signUp()"><i class="fa fa-sign-out"></i> Create an account<span ng-show="signuploading"><i class="fa fa-refresh  fa-spin"></i></span></button>
+                                    <br /><br />
+                                </form>
+
+                               
+                               
+                                <br /><br />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        
+    </div>
+</section>
+

@@ -1,0 +1,562 @@
+﻿
+
+<style>
+    .bootstrapWizard {
+        display: block;
+        list-style: none;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        background: #fff;
+    }
+
+        .bootstrapWizard a:hover, .bootstrapWizard a:active, .bootstrapWizard a:focus {
+            text-decoration: none;
+        }
+
+        .bootstrapWizard li {
+            display: block;
+            float: left;
+            width: 33.33%;
+            text-align: center;
+            padding-left: 0;
+        }
+
+    .width20 {
+        width: 20% !important;
+    }
+
+    .bootstrapWizard li:before {
+        border-top: 5px solid #cecece;
+        content: "";
+        display: block;
+        font-size: 0;
+        overflow: hidden;
+        position: relative;
+        top: 17px;
+        right: 1px;
+        width: 100%;
+        z-index: 1;
+    }
+
+    .bootstrapWizard li.active:before {
+        border-top: 5px solid #7CB342;
+    }
+
+    #bootstrap-wizard-1 {
+        background-color: #fff;
+        padding-top: 15px;
+    }
+
+    .bootstrapWizard li:first-child:before {
+        left: 50%;
+        max-width: 50%;
+    }
+
+    .bootstrapWizard li:last-child:before {
+        max-width: 50%;
+        width: 50%;
+    }
+
+    .bootstrapWizard li.complete .step {
+        background: #fff;
+        padding: 1px 6px;
+        border: 5px solid #8bc34a;
+    }
+
+    .bootstrapWizard li .step i {
+        font-size: 20px;
+        font-weight: 400;
+        position: relative;
+        color: #888;
+    }
+
+    .bootstrapWizard li.active i {
+        color: #fff;
+    }
+
+    .bootstrapWizard li .step {
+        background: #cecece;
+        color: #fff;
+        display: inline;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 12px;
+        padding: 10px 10px;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        line-height: normal;
+        position: relative;
+        text-align: center;
+        z-index: 2;
+        transition: all .1s linear 0s;
+    }
+
+    .bootstrapWizard li.active .step, .bootstrapWizard li.active.complete .step {
+        background: #7CB342;
+        color: #fff;
+        font-weight: 700;
+        font-size: 15px;
+        border-radius: 50%;
+    }
+
+    .bootstrapWizard li.complete .title, .bootstrapWizard li.active .title {
+        color: #333;
+        opacity: 1;
+    }
+
+    .bootstrapWizard li .title {
+        color: #333;
+        display: block;
+        font-size: 15px;
+        line-height: 30px;
+        font-weight: 600;
+        max-width: 100%;
+        position: relative;
+        table-layout: fixed;
+        text-align: center;
+        top: 20px;
+        word-wrap: break-word;
+        z-index: 104;
+        text-transform: capitalize;
+        opacity: 0.5;
+    }
+
+    .bootstrapWizard li .subtitle {
+        font-size: 12px;
+        text-align: center;
+        color: #888;
+        line-height: 55px;
+        display: block;
+        opacity: 0.6;
+    }
+
+    .bootstrapWizard li.active .subtitle {
+        opacity: 1;
+    }
+
+    .btn-secondary.wide {
+        background-color: #2c387e;
+        border-radius: 15px;
+        font-size: 14px;
+    }
+</style>
+
+<section class="section-content bg padding-y" data-ng-show="!authentication.isAuth && shoppingCartNew.length==0||authentication.isAuth && shoppingCartNew.length==0||!authentication.isAuth && shoppingCartNew==null||authentication.isAuth && shoppingCartNew==null">
+    <div class=" container">
+
+
+
+        <div class="page-wrap d-flex flex-row align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+
+                        <div class="mb-4 lead">The page you are looking for was not found.</div>
+                        <a href="#/home" class="btn btn-link">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<section class="section-content bg padding-y" data-ng-show="authentication.isAuth && shoppingCartNew.length>0">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <div id="bootstrap-wizard-1" class="col-sm-12">
+                    <div class="form-bootstrapWizard">
+                        <ul class="bootstrapWizard form-wizard">
+                            <li ng-class="{'active':CurrentTab==1}" data-target="#step1">
+                                <a ng-click="ChangeTab(1)">
+                                    <span class="step"> <i class="fa fa-upload"></i> </span>
+                                    <span class="title">  Address</span>
+                                    <span class="subtitle">Fill below form with your address</span>
+                                </a>
+                            </li>
+                            <li data-target="#step2" ng-class="{'active':CurrentTab==2}">
+                                <a ng-click="ChangeTab(2)">
+                                    <span class="step"> <i class="fa fa-eye"></i> </span>
+                                    <span class="title">  Orders</span>
+                                    <span class="subtitle">Your recently Items</span>
+                                </a>
+                            </li>
+
+                            <li data-target="#step2" ng-class="{'active':CurrentTab==3}">
+                                <a ng-click="ChangeTab(3)">
+                                    <span class="step"> <i class="fa fa-credit-card"></i> </span>
+                                    <span class="title">  Payment Method</span>
+                                    <span class="subtitle">Choose one of payment</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+
+                <div class="tab-content" ng-if="CurrentTab==1">
+                    <div class="card">
+                        <div id="address" class="active tab-block card-body">
+                            <form name='form1' ng-submit="">
+                                <!-- Invoice Address-->
+
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="shipping_zip" class="form-label">PinCode<span class="star">*</span></label>
+                                            <input id="shipping_zip" type="text" name="Pincode" placeholder="Pincode code" ng-change="getpindata(CustomerDetails.PinCode)" ng-model="CustomerDetails.PinCode" class="form-control" data-ng-pattern="/^[0-9]+$/" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="shipping_street" class="form-label">Locality/Town<span class="star">*</span></label>
+                                            <input id="shipping_street" type="text" name="Street" ng-model="CustomerDetails.Street" placeholder="Your street name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <div class="form-group">
+                                            <label for="shipping_city" class="form-label">City<span class="star">*</span></label>
+                                            <input id="shipping_city" type="text" name="City" ng-model="CustomerDetails.City" placeholder="Your city" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="shipping_state" class="form-label">State<span class="star">*</span></label>
+                                            <input id="shipping_state" type="text" name="State" ng-model="CustomerDetails.State" placeholder="Your state" class="form-control" required>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shipping_firstname" class="form-label">First Name<span class="star">*</span></label>
+                                            <input id="shipping_firstname" ng-model="CustomerDetails.FirstName" type="text" name="FirstName" placeholder="Enter you first name" class="form-control" required>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <div class="form-group">
+                                            <label for="shipping_lastname" class="form-label">Last Name<span class="star">*</span></label>
+                                            <input id="shipping_lastname" type="text" name="LastName" ng-model="CustomerDetails.LastName" placeholder="Enter your last name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="shipping_email" class="form-label">Email Address<span class="star">*</span></label>
+                                            <input id="shipping_email" type="text" name="Email" ng-pattern="emailvalidation" ng-model="CustomerDetails.Email" placeholder="enter your email address" class="form-control" required>
+                                            <span class="errormessage" ng-show="form1.Email.$error.pattern">Email is not valid!</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+
+
+                                        <div class="form-group">
+                                            <label for="shipping_phone-number" class="form-label">Phone Number<span class="star">*</span></label>
+                                            <input id="shipping_phone-number" type="tel" name="Phone" ng-model="CustomerDetails.Phone" placeholder="Your phone number" class="form-control" data-ng-pattern="/^[0-9]+$/"
+                                                   data-ng-minlength="8"
+                                                   maxlength="12" required>
+                                            <span class="errormessage" ng-show="form1.Phone.$error.minlength">Phone Number is not valid!</span>
+                                            <span class="errormessage" ng-show="form1.Phone.$error.maxlength">Phone Number is not valid!</span>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="#/ShoppingCart" class="btn  btn-secondary wide prev"> <i class="fa fa-angle-left"></i> Back to Cart</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" ng-click="ChangeTab(2)" ng-disabled=!form1.$valid class="btn btn-secondary wide next pull-right">Continue <i class="fa fa-angle-right"></i></button>
+                                    </div>
+                             
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-content" ng-if="CurrentTab==2">
+                
+                        <div id="order-review" class="tab-block">
+                         
+
+
+                                <div style="overflow-x:auto;">
+                                    <table class="table">
+                                        <tr>
+                                            <th>#</th>
+                                            <th style="min-width:300px">Product</th>
+                                            <th style="min-width:80px">Price</th>
+                                            <th style="min-width:50px">Quantity</th>
+                                            <th style="min-width:100px">Unit Price</th>
+
+                                        </tr>
+                                        <tr ng-repeat="item in shoppingCartNew track by $index">
+                                            <td>    
+                                                              
+                                               <img src="{{GetProductImageGlobal(item.Image)}}" alt="..." style=" max-width: 30px;">
+                                               
+                                            </td>
+                                            <td style="font-size: 11px;">{{item.ProductName|limitTo:50}}</td>
+                                            <td>{{item.Cost|currency:"₹ "}}</td>
+                                            <td>{{item.Quantity}}</td>
+                                            <td>{{item.Cost*item.Quantity|currency:"₹ "}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                          
+                                <div class="cart-holder" style="display:none">
+                                    <div class="basket-header">
+                                        <div class="row">
+                                            <div class="col-6">Product</div>
+                                            <div class="col-2">Price</div>
+                                            <div class="col-2">Quantity</div>
+                                            <div class="col-2">Unit Price </div>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="basket-body">
+                                        <!-- Product-->
+                                        <div class="item row d-flex align-items-center" ng-repeat="item in shoppingCartNew track by $index">
+                                            <div class="col-1">
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{GetProductImageGlobal(item.Image)}}" alt="..." style=" max-width: 142%; margin-top: -18px; margin-left: 10px;">
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <div class="title">
+                                                    <h6 style="font-size: 12px; font-weight: bold;">{{item.ProductName}}</h6>
+                                                    <p style="font-size:60%" ng-bind-html="item.ProductcartDescription|limitTo:300"></p>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-2"><span>{{item.Cost|currency:"₹ "}}</span></div>
+                                            <div class="col-2"><span>{{item.Quantity}}</span></div>
+                                            <div class="col-2"><span>{{item.Cost*item.Quantity|currency:"₹ "}}</span></div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            <hr />
+                            <div class="row">
+                                <div class="col-6"><a ng-click="ChangeTab(1)" class="btn btn-secondary wide prev" style="color:white"><i class="fa fa-angle-left"></i> Back to Address</a></div>
+                                <div class="col-6">
+                                    <a ng-click="ChangeTab(3)" class="btn btn-secondary wide next pull-right" style="color:white">
+                                        Continue <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+
+                      
+                            </div>
+                        </div>
+            
+                </div>
+                <div class="tab-content" ng-if="CurrentTab==3">
+                    <div class="card">
+                        <div id="payment-method" class="tab-block card-body">
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                <div class="card">
+                                    <div id="headingOne" role="tab" class="card-header">
+                                        <h6><a data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collapsed">Credit Card</a></h6>
+                                    </div>
+                                    <div id="collapseOne" role="tabpanel" aria-labelledby="headingOne" class="collapse show">
+                                        <div class="card-body">
+                                            <input type="radio" value="0" ng-model="PaymentInformation.cardType" name="shippping" id="payment-method-0" ng-click="PaymentInformation.cardType" class="radio-template">
+                                            <label for="payment-method-0"><strong>Credit Card on Delivery</strong><br><span class="label-description">Select Credit Card Payment Mode <i style="font-size:25px;color:green;" class="{{ccinfo.type}}"></i></span></label>
+                                            <article class="card" ng-show="PaymentInformation.cardType==0">
+                                                <div class="card-body p-5">
+                                                    <p>
+                                                        <img src="../../img/pay-visa.png">
+                                                        <img src="../../img/pay-visa-el.png">
+                                                        <img src="../../img/pay-mastercard.png">
+                                                        <img src="../../img/pay-american-ex.png">
+                                                    </p>
+
+                                                    <form name="form2" ng-submit="Continue()">
+                                                        <div class="form-group">
+                                                            <label for="username">Full name (on the card)</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                                                </div>
+                                                                <input type="text" name="card-name" placeholder="Name on card" ng-model="PaymentInformation.Nameoncard" id="card-name" class="form-control">
+                                                            </div> <!-- input-group.// -->
+                                                        </div> <!-- form-group.// -->
+
+                                                        <div class="form-group">
+                                                            <label for="cardNumber">Card number</label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text"><i class="{{ccinfo.type}}"></i><i ng-show="ccinfo.type==null||ccinfo.type==''" class="fa fa-credit-card"></i></span>
+                                                                </div>
+                                                                <input type="text" name="cardnumber" placeholder="Card number" ng-model="PaymentInformation.CardNumber" id="cardnumber" class="form-control" data-credit-card-type data-ng-pattern="/^[0-9]+$/"
+                                                                       data-ng-minlength="15"
+                                                                       maxlength="19" required>
+
+                                                            </div> <!-- input-group.// -->
+                                                        </div> <!-- form-group.// -->
+
+                                                        <div class="row">
+                                                            <div class="col-sm-8">
+                                                                <div class="form-group">
+                                                                    <label><span class="hidden-xs">Expire Date</span> </label>
+                                                                    <div class="form-inline">
+                                                                        <select class="form-control" ng-model="PaymentInformation.ExpMonth" style="width:45%">
+                                                                            <option selected="selected">Jan</option>
+                                                                            <option>Feb</option>
+                                                                            <option>Mar</option>
+                                                                            <option>Apr</option>
+                                                                            <option>May</option>
+                                                                            <option>Jun</option>
+                                                                            <option>Jul</option>
+                                                                            <option>Aug</option>
+                                                                            <option>Sep</option>
+                                                                            <option>Oct</option>
+                                                                            <option>Nov</option>
+                                                                            <option>Dec</option>
+                                                                        </select>
+                                                                        <span style="width:10%; text-align: center"> / </span>
+                                                                        <select class="form-control" ng-model="PaymentInformation.ExpYear" style="width:45%">
+                                                                            <option selected="selected">2018</option>
+                                                                            <option>2019</option>
+                                                                            <option>2020</option>
+                                                                            <option>2021</option>
+                                                                            <option>2022</option>
+                                                                            <option>2023</option>
+                                                                            <option>2024</option>
+                                                                            <option>2025</option>
+                                                                            <option>2026</option>
+                                                                            <option>2027</option>
+                                                                            <option>2028</option>
+                                                                            <option>2029</option>
+                                                                            <option>2030</option>
+                                                                            <option>2031</option>
+                                                                            <option>2032</option>
+                                                                            <option>2033</option>
+                                                                            <option>2034</option>
+                                                                            <option>2035</option>
+                                                                            <option>2036</option>
+                                                                            <option>2037</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-4">
+                                                                <div class="form-group">
+                                                                    <label data-toggle="tooltip" title="" data-original-title="3 digits code on back side of the card">CVV <i class="fa fa-question-circle"></i></label>
+                                                                    <input type="text" name="cvv" placeholder="123" id="cvv" ng-model="PaymentInformation.CVV" class="form-control" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="3"
+                                                                           maxlength="4" required>
+                                                                </div> <!-- form-group.// -->
+                                                            </div>
+                                                        </div> <!-- row.// -->
+
+                                                    </form>
+                                                </div> <!-- card-body.// -->
+                                            </article>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div id="headingTwo" role="tab" class="card-header">
+                                        <h6><a data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" class="collapsed">Paypal</a></h6>
+                                    </div>
+                                    <div id="collapseTwo" role="tabpanel" aria-labelledby="headingTwo" class="collapse show">
+                                        <div class="card-body">
+                                            <input type="radio" value="1" ng-model="PaymentInformation.cardType" name="shippping" id="payment-method-1" ng-click="PaymentInformation.cardType" class="radio-template">
+                                            <label for="payment-method-1"><strong>Continue with Paypal</strong><br><span class="label-description">Select Paypal Payment Mode.</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div id="headingThree" role="tab" class="card-header">
+                                        <h6><a data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" class="collapsed">Cash on delivery</a></h6>
+                                    </div>
+                                    <div id="collapseThree" role="tabpanel" aria-labelledby="headingThree" class="collapse show">
+                                        <div class="card-body">
+                                            <input type="radio" value="2" ng-model="PaymentInformation.cardType" name="shippping" id="payment-method-2" ng-click="PaymentInformation.cardType" class="radio-template">
+                                            <label for="payment-method-2"><strong>Cash on Delivery</strong><br><span class="label-description">Select Cash on Delivery Payment Mode.</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-6"><a ng-click="ChangeTab(2)" class="btn btn-secondary wide prev" style="color:white"><i class="fa fa-angle-left"></i> Back to Review </a></div>
+                                <div class="col-6">
+
+                                    <button type="submit" ng-click="PlaceOrder()" ng-if="PaymentInformation.cardType!='0'" ng-disabled="PaymentInformation.cardType==null" class="btn btn-secondary wide next pull-right">PLACE ORDER <i class="fa fa-angle-right"></i></button>
+                                    <button type="submit" ng-click="PlaceOrder()" ng-if="PaymentInformation.cardType=='0'" ng-disabled="!form2.$valid" class="btn btn-secondary wide next pull-right">PLACE ORDER <i class="fa fa-angle-right"></i></button>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="icontext" style=" font-size: 14px;">
+
+
+                            <div class="icon-wrap">
+                            <div class="icon-wrap icon-sm border round"><i style="color:green" class="fa fa-check"></i>
+                                 </div>
+                            </div>
+                            Standard delivery
+                            Get by | Free delivery
+                        </div>
+                    
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item"><span>Shipping and handling</span><strong class="pull-right">{{shipping |currency:"₹ "}}</strong></li>
+                            <li class="list-group-item"><span>Tax</span><strong class="pull-right">0.00</strong></li>
+                            <li class="list-group-item"><span>Total</span><strong class="text-primary price-total pull-right">{{CartTotal|currency:"₹ "}}</strong></li>
+                            <li class="list-group-item btn-success"><span>Total</span><strong class="text-primary price-total pull-right">{{TotalCartItems |currency:"₹ "}}</strong></li>
+                        </ul>
+
+                    </div>
+                </div> <!-- card.// -->
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+

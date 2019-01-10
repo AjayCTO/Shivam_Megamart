@@ -1,0 +1,494 @@
+﻿
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    .b25 {
+       height: 43px;
+    }
+</style>
+
+<div class="container-fluid bg p-t-35 p-b-80">
+    <div class="container">
+        <div class="flex-w flex-sb">
+            <div class="w-size13 p-t-30 respon5">
+                <div class="wrap-slick3 flex-sb flex-w">
+                    <div class="wrap-slick3-dots">
+                        <ul class="slick3-dots" role="tablist" style="">
+                            <li role="presentation" ng-repeat="obj in product.Images|limitTo:3" ng-click="changeimage($index)"> <img id="Image_{{$index}}" class="mainImage" src="{{GetProductImage(obj.imagepath)}}"><div class="slick3-dot-overlay"></div></li>
+                            <!--class="slick-active"-->
+
+                        </ul>
+                    </div>
+                    <div class="slick3 slick-initialized slick-slider slick-dotted">
+                        <div class="slick-list draggable">
+                            <div class="slick-track" style="opacity: 1">
+                                <div class="item-slick3 slick-slide slick-current slick-active" data-thumb="img/product-detail-01.jpg" data-slick-index="0" aria-hidden="false" tabindex="0" role="tabpanel" id="slick-slide10" aria-describedby="slick-slide-control10" style="position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1;">
+                                    <div class="wrap-pic-w" ng-repeat="obj in product.Images" ng-show="$first">
+                                        <img id="mainImage" src="{{GetProductImage(obj.imagepath)}}"  alt="IMG-PRODUCT">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-size14 p-t-30 respon5">
+                <h4 class="product-detail-name m-text16 p-b-13">
+                    {{allProductDetailNewWithAttr[0].ProductName}}
+                </h4>
+                <div class="rating-wrap">
+
+                    <ul class="rating-stars">
+                        <li style="width:80%" class="stars-active">
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <div class="label-rating">{{product.reviews.length}} reviews</div>
+
+                </div>
+                <span class="m-text17">
+                    {{product.ProductCost|currency:"₹ "}}
+                </span>
+
+                <p class="s-text8 p-t-10">
+                    {{allProductDetailNewWithAttr[0].description|limitTo:80}}
+                </p>
+
+                <!--  -->
+                <div class="p-t-33 p-b-60">
+                    <div class="flex-m flex-w p-b-10" ng-repeat="ptr in allProductDetailNewWithAttr[0].ProductAttributes" ng-if="ptr.AttrValues.length > 1">
+                        <div class="s-text15 w-size15">
+                            {{ptr.AttrName}}
+                        </div>
+
+                        <div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
+
+                            <select class="form-control selection-2" ng-model="myselected" ng-change="GetOtherDetails(myselected)" style=" height: 45px;">
+                                <option value=""> Select {{ptr.AttrName}} </option>
+                                <option ng-repeat="opt in ptr.AttrValues" ng-selected="getselectedvalue(ptr.AttrName,opt.Value)" value="{{ptr.AttrName+'#'+opt.Value}}">
+
+                                    {{opt.Value}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="flex-r-m flex-w p-t-10">
+                        <div class="s-text15 w-size15 t-center">
+                            Quantity
+                        </div>
+
+                        <div class="w-size16 flex-m flex-w">
+                            <div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
+                                <button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+                                    <i class="fs-12 fa fa-minus" aria-hidden="true"></i>
+                                </button>
+
+                                <input class="size8 m-text18 t-center num-product input2 qty" type="number" ng-model="Quantity" min="1" name="num-product" value="1">
+
+                                <button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+                                    <i class="fs-12 fa fa-plus" aria-hidden="true"></i>
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="flex-r-m flex-w p-t-10">
+                        <div class="w-size16 flex-m flex-w">
+                            <!-- Button -->
+                            <button class="btn btn-primary b25" ng-click="AddToCartGlobal(product.ProductId,product,'products-slider-',Quantity)">
+                                <i class="fa fa-shopping-cart"></i>  Cart
+                            </button>
+                            <button class="btn btn-youtube b25" style="margin-left:2px" ng-click="addTowishList(product.ProductId,product,'ProductDetail')">
+                                <i class="fa fa-heart-o"></i>  Wishlist
+
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!--  -->
+                <div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
+                    <h6 class="flex-sb-m cs-pointer m-text19 color0-hov trans-0-4" aria-expanded="true" data-toggle="collapse" data-target="#collapse50">
+                        Description
+                        <i class="down-mark fs-12 color1 fa fa-plus"></i>
+                    </h6>
+
+                    <div class="filter-content collapse" id="collapse50">
+                        <p class="s-text8">
+                            {{allProductDetailNewWithAttr[0].description}}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
+                    <h6 class="flex-sb-m cs-pointer m-text19 color0-hov trans-0-4" aria-expanded="true" data-toggle="collapse" data-target="#collapse51">
+                        Additional information
+                        <i class="down-mark fs-12 color1 fa fa-plus"></i>
+                    </h6>
+
+                    <div class="filter-content collapse" id="collapse51">
+                        <table class="table table-bordered">
+                            <tr ng-repeat="obj in product.allAttributes">
+                                <td align="right"> <strong>{{obj.attrName}} </strong> </td>
+                                <td>
+
+                                    {{obj.attrvalue}}
+
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="wrap-dropdown-content bo7 p-t-15 p-b-14">
+                    <h6 class="flex-sb-m cs-pointer m-text19 color0-hov trans-0-4" aria-expanded="true" data-toggle="collapse" data-target="#collapse52">
+                        Reviews ({{product.reviews.length}} )
+                        <i class="down-mark fs-12 color1 fa fa-plus"></i>
+                    </h6>
+
+                    <div class="filter-content collapse" id="collapse52">
+
+
+                        <div ng-show="product.reviews.length==0"> This product has no review</div>
+                        <figure class="itemside" ng-repeat="y in product.reviews" ng-hide="product.reviews.length==0">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-danger">
+                                    {{y.name|uppercase|limitTo:1}}
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">{{y.name}}</h5>
+                                <p class="text-muted">
+                                    <span class="pull-right">{{Ratingcheck(y.rating,y.id,y.name)}}</span>
+                                    <div class="Rating_{{y.id}}"></div>
+                                    {{y.review}}
+                                </p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container-fluid bg">
+
+        <div class="container box">
+            <header class="header"><h5>Add Review <span style="font-size:14px;color:orange" data-ng-show="!authentication.isAuth">(you can add review after login)</span></h5></header>
+            <hr />
+            <form name='form1' ng-submit="">
+                <!-- Invoice Address-->
+                <div class="block-header mb-5">
+                    <h6>{{product.reviews.length}} Review for {{allProductDetailNewWithAttr[0].ProductName}} </h6>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="ReviewName" class="form-label">Rating :</label>
+                        <i class="fa fa-star {{GetSelectedClass(1)}}" ng-click="review.Rating=1"></i>
+                        <i class="fa fa-star {{GetSelectedClass(2)}}" ng-click="review.Rating=2"></i>
+                        <i class="fa fa-star {{GetSelectedClass(3)}}" ng-click="review.Rating=3"></i>
+                        <i class="fa fa-star {{GetSelectedClass(4)}}" ng-click="review.Rating=4"></i>
+                        <i class="fa fa-star {{GetSelectedClass(5)}}" ng-click="review.Rating=5"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label for="ReviewName" class="form-label">Name<span class="star">*</span></label>
+                        <input id="ReviewName" ng-model="review.Name" type="text" name="ReviewName" placeholder="Enter you first name" class="form-control" required>
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="ReviewEmail" class="form-label">Email<span class="star">*</span></label>
+                        <input id="ReviewEmail" type="text" name="ReviewEmail" ng-pattern="emailvalidation" ng-model="review.Email" placeholder="Enter your Email" class="form-control" required>
+                        <span class="errormessage" ng-show="form1.Email.$error.pattern">Email is not valid!</span>
+
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="ReviewDetails" class="form-label">Review<span class="star">*</span></label>
+                        <textarea id="ReviewDetails" style="height:150px" name="ReviewDetails" ng-model="review.Review" placeholder="enter your Review" class="form-control" required></textarea>
+                    </div>
+
+                </div>
+                <div class="CTAs d-flex justify-content-between flex-column flex-lg-row"><button type="submit" ng-click="AddReview(allProductDetailNewWithAttr[0].ProductName)" ng-disabled=!form1.$valid class="btn btn-primary wide next"><i class="fa fa-check"></i> Submit</button></div>
+
+            </form>
+        </div>
+
+    </div>
+
+
+<section class="section-content bg padding-y" style="display:none">
+    <div class="container">
+        <div class="row=fluid">
+            <div id="">
+                <div class="card">
+                    <div class="row">
+                        <aside class="col-md-5 border-right">
+                            <article class="gallery-wrap">
+                                <div class="img-big-wrap">
+                                    <div ng-repeat="obj in product.Images" ng-show="$first"><a href="#" data-fancybox=""><img id="mainImage" src="{{GetProductImage(obj.imagepath)}}"></a></div>
+                                </div> <!-- slider-product.// -->
+                                <div class="img-small-wrap">
+                                    <div class="item-gallery" ng-repeat="obj in product.Images"> <img src="{{GetProductImage(obj.imagepath)}}"></div>
+                                </div> <!-- slider-nav.// -->
+                            </article> <!-- gallery-wrap .end// -->
+                        </aside>
+                        <aside class="col-md-7">
+                            <article class="p-5">
+                                <h3 class="title mb-3">{{allProductDetailNewWithAttr[0].ProductName}}</h3>
+
+                                <div class="mb-3">
+                                    <var class="price h3 text-warning">
+                                        <span class="currency">₹</span><span class="num"> {{product.ProductCost}}</span>
+                                    </var>
+                                    <span>/per kg</span>
+                                </div> <!-- price-detail-wrap .// -->
+                                <dl>
+                                    <dt>Description</dt>
+                                    <dd>
+                                        <p>
+                                            {{allProductDetailNewWithAttr[0].description}}
+                                        </p>
+                                    </dd>
+                                </dl>
+                                <div class="box">
+
+
+                                    <div class="row">
+                                        <div class="col-md-4" ng-repeat="ptr in allProductDetailNewWithAttr[0].ProductAttributes" ng-if="ptr.AttrValues.length > 1">
+                                            <dl class="dlist-inline">
+                                                <dt>{{ptr.AttrName}}: </dt>
+                                                <dd>
+                                                    <select class="form-control-sm" ng-model="myselected" ng-change="GetOtherDetails(myselected)" style="width:170px">
+                                                        <option value=""> Select {{ptr.AttrName}} </option>
+                                                        <option ng-repeat="opt in ptr.AttrValues" ng-selected="getselectedvalue(ptr.AttrName,opt.Value)" value="{{ptr.AttrName+'#'+opt.Value}}">
+
+                                                            {{opt.Value}}
+                                                        </option>
+                                                    </select>
+
+
+                                                </dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+
+
+                                </div> <!-- box.// -->
+
+                                <div class="rating-wrap">
+
+                                    <ul class="rating-stars">
+                                        <li style="width:80%" class="stars-active">
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="label-rating">{{product.reviews.length}} reviews</div>
+                                    <div class="label-rating">154 orders </div>
+                                </div> <!-- rating-wrap.// -->
+                                <hr>
+                                <div class="row">
+
+                                    <div class="col-sm-5">
+                                        <dl class="dlist-inline">
+                                            <dt>Quantity: </dt>
+                                            <dd>
+                                                <select class="form-control form-control-sm" ng-model="Quantity" style="width:70px;">
+                                                    <option selected=selected value=1>1</option>
+                                                    <option value=2>2</option>
+                                                    <option value=3>3</option>
+                                                    <option value=4>4</option>
+                                                    <option value=5>5</option>
+                                                </select>
+                                            </dd>
+                                            {{quantities}}
+                                        </dl>  <!-- item-property .// -->
+                                    </div> <!-- col.// -->
+                                    <!-- col.// -->
+                                </div> <!-- row.// -->
+                                <hr>
+                                <a ng-click="AddToCartGlobal(product.ProductId,product,'products-slider-',Quantity)" class="btn btn-outline-primary"> <i class="fa fa-shopping-cart"></i>Add to Cart</a>
+                                <a class="btn  btn-outline-primary {{checkisinwishlist(product.ProductId)}}" ng-click="addTowishList(product.ProductId)"> <i class="fa fa-heart-o"></i>Add to wishlist</a>
+                            </article> <!-- card-body.// -->
+                        </aside><!-- col.// -->
+                    </div> <!-- row.// -->
+                </div> <!-- card.// -->
+            </div>
+        </div> <!-- row.// -->
+        <hr />
+        <div class="card">
+            <br />
+            <div class="container">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" data-target="#home" role="tab" aria-controls="home" aria-selected="true"><h6>Additional Information</h6></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" data-target="#profile" role="tab" aria-controls="profile" aria-selected="false"><h6>Reviews</h6></a>
+                    </li>
+
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <div class="box">
+
+                            <table class="table table-bordered">
+                                <tr ng-repeat="obj in product.allAttributes">
+                                    <td align="right"> <strong>{{obj.attrName}} </strong> </td>
+                                    <td>
+
+                                        {{obj.attrvalue}}
+
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <article class="box">
+                                    <header class="header"><h5>Add Review</h5></header>
+                                    <hr />
+                                    <form name='form1' ng-submit="">
+                                        <!-- Invoice Address-->
+                                        <div class="block-header mb-5">
+                                            <h6>{{product.reviews.length}} Review for {{allProductDetailNewWithAttr[0].ProductName}} </h6>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="ReviewName" class="form-label">Rating :</label>
+                                                <i class="fa fa-star {{GetSelectedClass(1)}}" ng-click="review.Rating=1"></i>
+                                                <i class="fa fa-star {{GetSelectedClass(2)}}" ng-click="review.Rating=2"></i>
+                                                <i class="fa fa-star {{GetSelectedClass(3)}}" ng-click="review.Rating=3"></i>
+                                                <i class="fa fa-star {{GetSelectedClass(4)}}" ng-click="review.Rating=4"></i>
+                                                <i class="fa fa-star {{GetSelectedClass(5)}}" ng-click="review.Rating=5"></i>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="form-group col-md-12">
+                                                <label for="ReviewName" class="form-label">Name<span class="star">*</span></label>
+                                                <input id="ReviewName" ng-model="review.Name" type="text" name="ReviewName" placeholder="Enter you first name" class="form-control" required>
+
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="ReviewEmail" class="form-label">Email<span class="star">*</span></label>
+                                                <input id="ReviewEmail" type="text" name="ReviewEmail" ng-pattern="emailvalidation" ng-model="review.Email" placeholder="Enter your last name" class="form-control" required>
+                                                <span class="errormessage" ng-show="form1.Email.$error.pattern">Email is not valid!</span>
+
+                                            </div>
+                                            <div class="form-group col-md-12">
+                                                <label for="ReviewDetails" class="form-label">Review<span class="star">*</span></label>
+                                                <textarea id="ReviewDetails" name="ReviewDetails" ng-model="review.Review" placeholder="enter your email address" class="form-control" required></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="CTAs d-flex justify-content-between flex-column flex-lg-row"><button type="submit" ng-click="AddReview()" ng-disabled=!form1.$valid class="btn btn-template wide next">Submit</button></div>
+
+                                    </form>
+                                </article>
+                            </div><!-- col // -->
+                            <div class="col-md-6">
+                                <article class="box">
+                                    <header class="header"><h5>Reviews</h5></header>
+                                    <hr />
+                                    <figure class="itemside" ng-repeat="y in product.reviews">
+                                        <div class="aside align-self-center">
+                                            <span class="icon-wrap icon-md round bg-danger">
+                                                {{y.name|uppercase|limitTo:1}}
+                                            </span>
+                                        </div>
+                                        <figcaption class="text-wrap">
+                                            <h5 class="title">{{y.name}}</h5>
+                                            <p class="text-muted">
+                                                <span class="pull-right">{{Ratingcheck(y.rating,y.id,y.name)}}</span>
+                                                <div class="Rating_{{y.id}}"></div>
+                                                {{y.review}}
+                                            </p>
+                                        </figcaption>
+                                    </figure> <!-- iconbox // -->
+                                </article> <!-- panel-lg.// -->
+                            </div><!-- col // -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+<section class="section-content bg padding-y">
+    <div class="container">
+
+        <header class="section-heading heading-line">
+            <h4 class="title-section bg"><small>You may also like</small></h4>
+        </header>
+        <div class="owl-carousel owl-theme GetRelatedPrdoucts">
+            <!-- item-->
+            <div class="item-slide" ng-repeat="x in RelatedProducts">
+                <figure class="card card-product">
+                    <span class="badge-new"> {{x[5]|currency:"₹ "}} </span>
+                    <div class="img-wrap" style="cursor:pointer" ng-click="SetProduct(x)">
+                        <img class="card-img-top" src="{{GetProductImage(x[13])}}" alt="{{x[9]}}">
+
+                    </div>
+                    <figcaption class="info-wrap text-center">
+                        <h6 style="cursor:pointer" ng-click="SetProduct(x)" class="title text-truncate">{{x[9]}}</h6>
+                        <div class="action-wrap">
+                            <a ng-click="AddToCartGlobal(x[4],x,'ProductDetails')" id="btn_{{x[4]}}" class="active btn btn-sm btn-primary pull-right Add"><i id="spinid_{{x[4]}}" class="fa fa-shopping-cart"></i> </a>
+                            <div class="price-wrap h6">
+
+                            </div> <!-- price-wrap.// -->
+                        </div> <!-- action-wrap -->
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<!--<script>
+    $(document).ready(function () {
+        $("#mainImage").elevateZoom();
+    });
+</script>-->

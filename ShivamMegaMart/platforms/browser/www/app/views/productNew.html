@@ -1,0 +1,357 @@
+﻿<style>
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 10000;
+        top: 0;
+        left: 0;
+        background-color: #2c387e;
+        overflow-x: hidden;
+        transition: 0.5s;
+        padding-top: 60px;
+    }
+
+        .sidenav a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #818181;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+            .sidenav a:hover {
+                color: #f1f1f1;
+            }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+    .logoimage {
+        height: 28px;
+        position: absolute;
+        top: 17px;
+        left: 9px;
+    }
+
+    @media screen and (max-height: 450px) {
+
+        .sidenav a {
+            font-size: 14px;
+        }
+    }
+
+    .card-header .title {
+        font-weight: bold !important;
+    }
+
+
+    .filter-summary-filter {
+        float: left;
+        margin-right: 8px;
+    }
+    .filter-summary-removeFilter {
+        border: solid 1px #d4d5d9;
+        border-radius: 20px;
+        padding: 6px;
+    }
+</style>
+
+<section class="section-content bg padding-y">
+    <div class="container">
+
+        <div class="row">
+        
+            <div class="col-md-12">
+                
+
+                        <div class="filter-summary-filter" ng-repeat="cat in Catgoryfiltersummery">
+                            <label class="filter-summary-removeFilter">
+                                {{cat.Name}}
+                                <!--<input type="checkbox" value="Dresses" data-group="Categories">-->
+                                <span style="color:#2c387e;cursor:pointer" class="fa fa-remove" ng-click="AddCatArray(cat.Id,cat.Name)">
+                                </span>
+                            </label>
+
+                        </div>
+                <div class="filter-summary-filter" ng-repeat="attr in AttributefilterSummery">
+                    <label class="filter-summary-removeFilter">
+                       {{attr.AttributeValue}}
+                        <!--<input type="checkbox" value="Dresses" data-group="Categories">-->
+                        <span style="color:#2c387e;cursor:pointer" class="fa fa-remove" ng-click="IsFilterChecked(attr.AttributeName,attr.AttributeValue)">
+                        </span>
+                    </label>
+
+                </div>
+         
+            </div>
+            <!-- col.// -->
+
+            <main class="col-sm-12">
+            
+                <div class="row">
+                    <div class="col-6"><small>Showing <strong>{{pagedItems.length}} </strong>of <strong>{{total}} </strong>results</small></div>
+                    <div class="col-6">
+                        <a class="pull-right" ng-click="LoadInMode('G')" data-toggle="tooltip" title="" data-original-title="Grid view"> <i ng-class="currentMode==true ? 'fa fa-th iconstyle isNotActive' : 'fa fa-th iconstyle'"></i></a>
+                        <a class="pull-right" ng-click="LoadInMode('L')" data-toggle="tooltip" title="" data-original-title="List view"> <i ng-class="currentMode==false ? 'fa fa-bars iconstyle isNotActive' : 'fa fa-bars iconstyle'" class="fa fa-bars iconstyle"></i></a>
+                        <a class="pull-right" onclick="openNav()"> <i class="fa fa-filter iconstyle"></i></a>
+
+                    </div>
+                </div>
+                <hr />
+
+                <div id="mySidenav" class="sidenav">
+                    <div class="mobile-margin visible-xs"></div>
+                    <img class="logoimage" src="img/logo-colored.png" alt="Alternate Text">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                        &times;
+
+                    </a>
+
+                    <div class="card card-filter">
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <a class="" aria-expanded="true" data-toggle="collapse" data-target="#collapse22">
+                                    <i class="icon-action fa fa-chevron-down"></i>
+                                    <h6 class="title">By Category</h6>
+                                </a>
+                            </header>
+                            <div style="" class="filter-content collapse show" id="collapse22">
+                                <div class="just-padding">
+                                    <div class="list-group list-group-root well" ng-repeat="parentCategory in categories" >
+                                        <label class="form-check">
+                                            <input style=" position: absolute; z-index: 10; top: 19px" class="form-check-input" ng-click="AddCatArray(parentCategory.id,parentCategory.categoryName)" ng-checked="categoriesarraySelect.indexOf(parentCategory.id) > -1" name="name{{parentCategory.categoryName }}" id="name{{parentCategory.id}}" value="" type="checkbox">
+                                        </label>
+                                        <a class="list-group-item" data-target="#item-{{$index}}" style="border: none;" data-toggle="collapse">
+                                            <i class="icon-action fa fa-chevron-right" ng-hide="parentCategory.categories1.length==0"></i>
+                                            <span class="form-check-label">
+                                                {{parentCategory.categoryName }}
+                                            </span>
+                                        </a>
+                                        <div class="list-group collapse" id="item-{{$index}}">
+                                            <div class="form-group mb-1 list-group-item" ng-repeat="subcat in parentCategory.categories1" style=" padding-left: 19px">
+                                                <label class="form-check" style="margin-top: -18px;">
+                                                    <input type="checkbox" ng-click="AddCatArray(subcat.id,subcat.categoryName)" ng-checked="categoriesarraySelect.indexOf(subcat.id) > -1" name="name{{ subcat.categoryName }}" id="name{{ subcat.CategoryName }}" class="checkbox-template" value="" style="left: 1px; position: absolute; z-index: 10; right: 1px; top: 24px; ">
+                                                </label>
+                                                <a class="list-group-item" data-target="#Subitem-{{$index}}" style="border: none;" data-toggle="collapse">
+                                                    <i class="icon-action fa fa-chevron-right" ng-hide="subcat.categories1.length==0"></i>
+                                                    <span class="form-check-label">
+                                                        {{subcat.categoryName }}
+                                                    </span>
+
+                                                </a>
+
+                                                <div class="list-group collapse" id="Subitem-{{$index}}">
+
+                                                    <div class="form-group mb-1 list-group-item" ng-repeat="menisub in subcat.categories1" style=" border: none;">
+                                                        <input type="checkbox" ng-click="AddCatArray(menisub.id,menisub.categoryName)" ng-checked="categoriesarraySelect.indexOf(menisub.id) > -1" name="name{{ menisub.categoryName }}" id="name{{ menisub.CategoryName }}" class="checkbox-template" value="">
+                                                        <label for="brand0" ng-click="AddCatArray(menisub.id,menisub.categoryName)">{{menisub.categoryName}} </label>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div> <!-- collapse .// -->
+                        </article> <!-- card-group-item.// -->
+                        <article class="card-group-item">
+                            <header class="card-header">
+                                <a data-toggle="collapse" data-target="#collapse33">
+                                    <i class="icon-action fa fa-chevron-down"></i>
+                                    <h6 class="title">By Price  </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse show" id="collapse33">
+                                <div class="card-body">
+                                    <input type="range" class="custom-range" min="0" max="100" name="">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6 col-sm-3">
+                                            <label>Min</label>
+                                            <input class="form-control" placeholder="₹0" ng-model="Minval" type="number">
+                                        </div>
+                                        <div class="form-group text-right col-md-6 col-sm-3">
+                                            <label>Max</label>
+                                            <input class="form-control" placeholder="₹1,0000" ng-model="Maxval" type="number">
+                                        </div>
+                                    </div> <!-- form-row.// -->
+                                    <button class="btn btn-block btn-outline-primary" ng-click="pricefilter()">Apply</button>
+                                </div> <!-- card-body.// -->
+                            </div> <!-- collapse .// -->
+                        </article> <!-- card-group-item.// -->
+                        <article class="card-group-item" ng-repeat="Attribute in Attributes|limitTo:4" ng-init="outerIndex = $index">
+                            <header class="card-header">
+                                <a data-toggle="collapse" data-target="#collapse44_{{$index}}">
+                                    <i class="icon-action fa fa-chevron-down"></i>
+                                    <h6 class="title">{{Attribute.attributeName}} </h6>
+                                </a>
+                            </header>
+                            <div class="filter-content collapse" id="collapse44_{{$index}}">
+                                <div class="card-body AttrbuteFilter">
+                                    <form>
+                                        <label class="form-check" ng-repeat="attrValue in AttributesValue |  unique:'attributeValue'" ng-if="Attribute.id==attrValue.attributeId">
+
+                                            <input class="form-check-input" id="attr_{{attrValue.attributeValue}}" name="attr_{{attrValue.attributeValue}}" ng-click="IsFilterChecked(Attribute.attributeName,attrValue.attributeValue)" ng-checked="attrarraySelect.indexOf(attrValue.attributeValue) > -1" value="" type="checkbox">
+                                            <span class="form-check-label">
+                                                <span class="float-right badge badge-light round"></span>
+                                                {{attrValue.attributeValue}}
+                                            </span>
+
+                                        </label>  <!-- form-check.// -->
+
+                                    </form>
+                                </div> <!-- card-body.// -->
+                            </div> <!-- collapse .// -->
+                        </article> <!-- card-group-item.// -->
+                    </div> <!-- card.// -->
+
+
+                </div>
+                <br />
+                <div ng-show="IsLoadingData==true">
+
+
+                    <div style="text-align:center;">
+                        <img src="../img/ajax_loading.gif" width="100" />
+                    </div>
+
+
+                </div>
+                <div class="row" ng-show="currentMode==false">
+                    <div class="col-md-3 col-sm-6" ng-repeat="x in pagedItems">
+                        <div class="product-grid4">
+                            <div class="product-image4">
+                                <a ng-click="SetProduct(x)" style="background-color:white;">
+                                    <img class="img-fluid pic-1" src="{{GetProductImage(GetPath(x[13],0))}}">
+                                    <img class="img-fluid pic-2" src="{{GetProductImage(GetPath(x[13],1))}}">
+                                </a>
+                                <!--<ul class="social">
+                                    <li><a href="#" data-tip="Quick View"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="#" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li><a href="#" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                                <span class="product-new-label">New</span>
+                                <span class="product-discount-label">-10%</span>-->
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="#"><span ng-bind="x[9] | limitTo:20"></span><span ng-show="x[9].length>20">...</span></a></h3>
+                                <div class="price">
+                                    {{x[5]|currency:"₹ "}}
+                                    <!--<span>$16.00</span>-->
+                                </div>
+                                <!--<a class="add-to-cart" href="">ADD TO CART</a>-->
+                                <a ng-click="AddToCartGlobal(x[4],x,'products-')" id="btn_{{x[4]}}" class="cartButton"><i id="spinid_{{x[4]}}" class="fa fa-shopping-cart"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="currentMode==false" style="display:none;">
+                    <div class="col-md-4" ng-repeat="x in pagedItems">
+                        <figure class="card card-product">
+                            <div class="img-wrap">
+                                <img src="{{GetProductImage(x[13])}}" ng-mouseover="hover(this, '{{GetProductImage(x[12])}}');" ng-mouseout="hover(this, '{{GetProductImage(x[13])}}');">
+                                <a class="btn-overlay" ng-click="SetProduct(x)"><i class="fa fa-search-plus"></i> Quick view</a>
+                            </div>
+                            <figcaption class="info-wrap">
+                                <h4 class="title"><span ng-bind="x[9] | limitTo:20"></span><span ng-show="x[9].length>20">...</span></h4>
+
+                                <p class="desc"><span ng-bind="x[10] | limitTo:50"></span><span ng-show="x[10].length>50">...</span>  </p>
+                                <div class="rating-wrap">
+                                    <div class="price-wrap h5">
+                                        <span class="price-new">{{x[5]|currency:"₹ "}}</span> <!--<del class="price-old">$1980</del>-->
+                                    </div> <!-- price-wrap.// -->
+
+                                </div> <!-- rating-wrap.// -->
+                            </figcaption>
+                            <div class="bottom-wrap">
+                                <!--<a href="" class="btn btn-sm btn-primary float-right">Order Now</a>-->
+                                <a ng-click="AddToCartGlobal(x[4],x,'products-')" id="btn_{{x[4]}}" class="btn active btn-round btn-primary"><i id="spinid_{{x[4]}}" class="fa fa-shopping-cart"></i> Add to Cart</a>
+
+                            </div> <!-- bottom-wrap.// -->
+                        </figure>
+                    </div> <!-- col // -->
+                    <!-- col // -->
+                    <!-- col // -->
+                </div> <!-- row.// -->
+                <!--List view start-->
+                <article class="card card-product row" ng-repeat="x in pagedItems" style="margin-bottom:10px;" ng-show="currentMode==true">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <aside class="col-sm-3">
+                                <div class="img-wrap"><img src="{{GetProductImage(GetPath(x[13],0))}}" alt="product" class="img-fluid"></div>
+                            </aside> <!-- col.// -->
+                            <article class="col-sm-6">
+
+                                <h4 class="title"> {{x[9]}} </h4>
+                                <div class="rating-wrap  mb-2">
+                                    <ul class="rating-stars">
+                                        <li style="width:80%" class="stars-active">
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </li>
+                                    </ul>
+                                    <div class="label-rating">132 reviews</div>
+                                    <div class="label-rating">154 orders </div>
+                                </div>
+                                <p><span ng-bind="x[10] | limitTo:100"></span><span ng-show="x[10].length>150">...</span>  </p>
+                                <!--<dl class="dlist-align" ng-repeat="y in AllProductsColumns|limitTo:3">
+                                    <dt>{{y.ColName}}</dt>
+                                    <dd><span> {{x[y.colIndex]}} </span> </dd>
+                                </dl>-->
+
+                            </article> <!-- col.// -->
+                            <aside class="col-sm-3 border-left">
+                                <div class="action-wrap">
+                                    <div class="price-wrap h4">
+                                        <span class="price"> {{x[5]|currency:"₹ "}}</span>
+                                        <!--  <del class="price-old"> $98</del>-->
+                                    </div> <!-- info-price-detail // -->
+                                    <p class="text-success">Free shipping</p>
+                                    <br>
+                                    <p>
+                                        <a ng-click="AddToCartGlobal(x[4],x,'products-')" class="btn btn-primary b25"><i class="fa fa-shopping-cart"></i> Add to Cart</a>
+                                        <a ng-click="SetProduct(x)" class="btn btn-secondary"> <i class="fa fa-info"></i> Details  </a>
+                                    </p>
+                                    <a href="#"><i class="fa fa-heart"></i> Add to wishlist</a>
+                                </div> <!-- action-wrap.// -->
+                            </aside> <!-- col.// -->
+
+
+                        </div> <!-- row.// -->
+                    </div> <!-- card-body .// -->
+                </article>
+                <div ng-show="loadmore==true">
+                    <div class="container">
+
+                        <div style="text-align:center;">
+                            <img src="../img/ajax_loading.gif" width="100" />
+                        </div>
+
+                    </div>
+                </div>
+                <div style="text-align:center;">
+                    <a ng-click="LoadMoreProducts()" ng-disabled="loadmore==true" ng-hide="IsLoadingData==true||loadmore==true||total==0" class="btn btn-outline-primary">LoadMore</a>
+                    <h6 ng-hide="IsLoadingData==true||total>0">No Product Found</h6>
+                    <!--<img ng-hide="IsLoadingData==true||total>0" src="../../img/noproduct.png" />-->
+                </div>
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+

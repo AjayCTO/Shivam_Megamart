@@ -1,0 +1,129 @@
+﻿<!--<section class="section-content bg padding-y" data-ng-show="!authentication.isAuth && shoppingCartNew.length==0||authentication.isAuth && shoppingCartNew.length==0||!authentication.isAuth && shoppingCartNew==null||authentication.isAuth && shoppingCartNew==null">
+
+    <div class=" container">
+
+        <div class="page-wrap d-flex flex-row align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+
+                        <div class="mb-4 lead">The page you are looking for was not found.</div>
+                        <a href="#/home" class="btn btn-link">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>-->
+
+
+<section class="section-content bg padding-y">
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-3">
+                <h5 id="autheticatuser" data-toggle="collapse" data-target="#collapse72"><i class="icon-sm round border fa fa-user"></i> {{authentication.userName}}</h5><i style=" margin-top: -30px; margin-right: 5px; float: right; font-size: 114%;" class="icon-action fa fa-chevron-down"></i>
+                <hr />
+                <div class="card" id="collapse72">
+                    <article class="card-group-item">
+
+                        <div class="list-group list-group-flush">
+                            <a class="list-group-item active" style="background: #2c387e;"><i class="fa fa-th"> </i>&nbsp;&nbsp;My Orders  </a>
+                            <a href="#/WishList" class="list-group-item"><i class="fa fa-heart"> </i>&nbsp;&nbsp;Wish List  </a>
+
+                            <a href="" data-ng-click="logOut()" class="list-group-item"><i class="fa fa-sign-out"> </i>&nbsp;&nbsp;Sign Out</a>
+                        </div>  <!-- list-group .// -->
+
+                    </article> <!-- card-group-item.// -->
+
+                </div> <!-- card.// -->
+
+            </div>
+            <div class="col-md-9">
+             
+
+               <div class="card">
+                   <div style="overflow-x:auto;">
+                       <table>
+                           <tr>
+                               <th>Order Nubmer</th>
+                               <th style="min-width: 100px !important;">Order Date</th>
+                               <th style="min-width: 100px !important;">Amount</th>
+                               <th>Order Status</th>
+                               <th style="min-width: 80px !important;">Action</th>
+                           </tr>
+                           <tr ng-repeat="item in CustomerOrders.data|filter: {orderNumber: searchText }">
+                               <td>{{item.orderNumber}} </td>
+                               <td>{{item.orderdate| date:"dd.MM.YYYY"}}</td>
+                               <td>{{item.total|currency:"₹ "}}</td>
+                               <td><span class="label label-warning"> {{item.orderstatus}}</span></td>
+                               <td><a href="" ng-click="getorderitem(CustomerOrders.customerdetails,item)" class="btn btn-primary  btn-sm"><i style="color:white" class="fa fa-eye"></i></a> <a href="" ng-click="Cancleorderitem(item.id)" class="btn btn-primary  btn-sm"><i style="color:white" class="fa fa-close"></i></a></td>
+                           </tr>
+                       </table>
+                   </div>
+               </div>
+                    <!--<div class="col-md-6">
+                        <select class="form-control" style="width:64px" ng-change="loadingroder(loadnumber)" ng-model="loadnumber">
+                            <option>5</option>
+                            <option>25</option>
+                            <option>50</option>
+                            <option>All</option>
+                        </select>
+                    </div>-->
+                 
+                    <!--<div class="col-md-6">
+                        <input type='text' class="form-control" ng-model='searchText' placeholder="Search a order number" />
+
+                    </div>-->
+                    <!--<div class="card">-->
+                        <!--<div class="col-md-12">
+
+                            <table class="table table-bordered bordered table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Order Nubmer</th>
+                                        <th>Order Date</th>
+                                        <th>Total Amount</th>
+                                        <th>Order Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in CustomerOrders.data|filter: {orderNumber: searchText }|limitTo:loadnumber">
+                                        <td>{{item.orderNumber}} </td>
+                                        <td>{{item.orderdate| date:"dd.MM.YYYY"}}</td>
+                                        <td>{{item.total|currency:"₹ "}}</td>
+                                        <td><span class="label label-warning"> {{item.orderstatus}}</span></td>
+                                        <td><a href="" ng-click="getorderitem(CustomerOrders.customerdetails,item)" class="btn btn-primary  btn-sm"><i style="color:white" class="fa fa-eye"></i></a> <a href="" ng-click="Cancleorderitem(item.id)" class="btn btn-primary  btn-sm"><i style="color:white" class="fa fa-close"></i></a></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>-->
+                    <!--</div>-->
+               
+            </div>
+        </div>
+    </div>
+</section>
+    <style>
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+
+
