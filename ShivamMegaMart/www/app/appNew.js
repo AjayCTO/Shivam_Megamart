@@ -7,12 +7,12 @@ app.config(function ($routeProvider) {
 
     $routeProvider.when("/home", {
         controller: "homeController",
-        templateUrl: "app/views/homeNew.html"
+        templateUrl: "../app/views/homeNew.html"
     });
 
     $routeProvider.when("/login", {
         controller: "loginController",
-        templateUrl: "/app/views/loginNew.html"
+        templateUrl: "../app/views/loginNew.html"
     });
 
     $routeProvider.when("/signup", {
