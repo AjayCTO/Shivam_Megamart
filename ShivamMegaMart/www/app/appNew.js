@@ -114,7 +114,7 @@ app.config(function ($routeProvider) {
 //var serviceBase = 'http://shivamface.shivamitconsultancy.com/';
 //var _GlobalImagePath = "http://shivamonline.shivamitconsultancy.com/";
 var serviceBase = 'https://api.shivamitconsultancy.com/';
-var _GlobalImagePath = "https://invoice.shivamitconsultancy.com/";
+var _GlobalImagePath = "https://admin.shivamitcs.in/";
 
 //var serviceBase = 'http://ngauthenticationapi.azurewebsites.net/';
 app.constant('ngAuthSettings', {
